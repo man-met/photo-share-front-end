@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="container">
+    <Post :posts="posts" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { getPosts } from '../composables/axiosCalls';
+import Post from '../components/Post';
+import { ref } from '@vue/reactivity';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
+  components: { Post },
+  setup() {
+    const posts = ref(null);
+
+    const retrievePosts = async () => {
+      posts.value = await getPosts();
+    };
+
+    retrievePosts();
+    return {
+      posts,
+    };
   },
 };
 </script>
+
+<style></style>

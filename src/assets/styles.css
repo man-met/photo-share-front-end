@@ -1,0 +1,213 @@
+/* Development Styles */
+* {
+  color: #4d6f89;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: black;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* frequently used styles */
+
+.b {
+  font-weight: bold;
+}
+
+.p {
+  padding: 10px 0;
+}
+
+.m {
+  margin: 10px 0;
+}
+
+.m-small {
+  margin: 5px 0;
+}
+
+.mr {
+  margin-right: 10px;
+}
+
+.mb-sm {
+  margin-bottom: 5px;
+}
+
+.mb-med {
+  margin-bottom: 10px;
+}
+
+.ml {
+  margin-left: 10px;
+}
+
+.ib {
+  display: inline-block;
+}
+
+/* mobile-first */
+header {
+  border-bottom: 1px solid rgb(36, 36, 36);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+}
+
+main {
+  margin: 70px 0 50px 0;
+}
+
+/* Mobile Footer */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: black;
+  border-top: 1px solid rgb(36, 36, 36);
+}
+
+footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+#logo {
+  font-family: 'Lobster', cursive;
+  padding: 10px 0px 10px 15px;
+  text-align: left;
+}
+
+ion-icon {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+/* .container {
+} */
+
+.post-card {
+  border-top: 1px solid rgb(36, 36, 36);
+  border-bottom: 1px solid rgb(36, 36, 36);
+  margin-top: 10px;
+}
+
+.post-header {
+  text-align: left;
+  padding: 10px 15px;
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 42px;
+  height: 42px;
+  clip-path: circle(21px at center);
+  z-index: -1;
+}
+
+.username {
+  margin: 10px;
+}
+
+/* .post-content {
+} */
+
+.post-content > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.post-footer {
+  text-align: left;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.action-icons-container {
+  padding: 5px 5px 5px 0;
+}
+
+.action-icon {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Profile Page */
+
+.profile-header {
+  text-align: left;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 0;
+}
+
+.profile-page-pic {
+  width: 84px;
+  height: 84px;
+  clip-path: circle(42px at center);
+  z-index: -1;
+}
+
+.profile-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-bio {
+  text-align: left;
+  padding: 0 15px;
+}
+
+.profile-buttons-container {
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgb(36, 36, 36);
+}
+
+.profile-buttons {
+  margin: 10px 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.profile-buttons > button {
+  margin: 0 5px;
+  padding: 5px;
+}
+
+.post-images-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.post-image {
+  display: flex;
+}
+
+.post-image > img {
+  width: 100%;
+  height: calc(100vw / 3.5);
+  object-fit: cover;
+}

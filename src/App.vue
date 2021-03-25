@@ -1,10 +1,26 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <Header v-if="router.currentRoute.value.name !== 'Camera'" />
+  <main>
+    <router-view />
+  </main>
+  <MobileFooter v-if="router.currentRoute.value.name !== 'Camera'" />
 </template>
+
+<script>
+import Header from './components/Header';
+import MobileFooter from './components/MobileFooter';
+import { useRouter } from 'vue-router';
+
+export default {
+  components: { Header, MobileFooter },
+  setup() {
+    const router = useRouter();
+    return {
+      router,
+    };
+  },
+};
+</script>
 
 <style>
 #app {
@@ -13,18 +29,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

@@ -1,11 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Search from '../views/Search.vue';
+import Camera from '../views/Camera.vue';
+import Profile from '../views/Profile.vue';
+import Settings from '../views/Settings.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+  },
+  {
+    path: '/camera',
+    name: 'Camera',
+    component: Camera,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
   },
   {
     path: '/about',
