@@ -1,22 +1,31 @@
 <template>
-  <Header v-if="router.currentRoute.value.name !== 'Camera'" />
+  <Header />
   <main>
     <router-view />
   </main>
-  <MobileFooter v-if="router.currentRoute.value.name !== 'Camera'" />
+  <!-- Show only if the user is logged in -->
+  <MobileFooter v-if="getUser" />
 </template>
 
 <script>
 import Header from './components/Header';
 import MobileFooter from './components/MobileFooter';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { computed } from '@vue/runtime-core';
 
 export default {
   components: { Header, MobileFooter },
   setup() {
     const router = useRouter();
+    const store = useStore();
+
+    const getUser = computed(() => {
+      return store.getters['user/getUser'];
+    });
     return {
       router,
+      getUser,
     };
   },
 };
@@ -29,5 +38,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100%;
 }
 </style>

@@ -7,6 +7,7 @@
 
 body {
   background: black;
+  /* min-height: 100vh; */
 }
 
 a {
@@ -52,6 +53,22 @@ a {
   display: inline-block;
 }
 
+/* buttons styles */
+
+.primary,
+.success,
+.danger,
+.warning {
+  cursor: pointer;
+  margin: 5px;
+  background: #1d72e7;
+  font-weight: bold;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 18px;
+}
+
 /* mobile-first */
 header {
   border-bottom: 1px solid rgb(36, 36, 36);
@@ -63,7 +80,12 @@ header {
 }
 
 main {
-  margin: 70px 0 50px 0;
+  border-top: 1px solid green;
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 70px 0 50px 0;
+  box-sizing: border-box;
 }
 
 /* Mobile Footer */

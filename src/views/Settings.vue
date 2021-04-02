@@ -1,9 +1,23 @@
 <template>
-  <h1>Settings Page</h1>
+  <button @click="logoutAction" class="primary">Logout</button>
 </template>
 
 <script>
-export default {};
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+
+    const logoutAction = async () => {
+      await store.dispatch('user/logoutAction');
+    };
+
+    return {
+      logoutAction,
+    };
+  },
+};
 </script>
 
 <style></style>

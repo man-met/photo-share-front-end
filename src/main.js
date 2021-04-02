@@ -6,8 +6,20 @@ import router from './router';
 import store from './store';
 
 const app = createApp(App);
-// app.config.isCustomElement = (tag) => tag.startsWith('ion-');
+// console.log(store);
 
-app.use(store).use(router).mount('#app');
+const authenticateUser = async () => {
+  // INFO: wait to check if the user is authenticated
+  await store.dispatch('user/isUserAuthenticated');
+
+  // console.log(store);
+  // initiate the app
+  app.use(store).use(router).mount('#app');
+};
+
+// INFO: invoke the function
+authenticateUser();
+// app.config.isCustomElement = (tag) => tag.startsWith('ion-');
+// app.use(store).use(router).mount('#app');
 
 // createApp(App).use(store).use(router).mount('#app');
