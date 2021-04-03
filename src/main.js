@@ -10,6 +10,7 @@ const app = createApp(App);
 
 const authenticateUser = async () => {
   // INFO: wait to check if the user is authenticated
+  // it only gets involved when the user refreshes or the user opens the page from search bar
   await store.dispatch('user/isUserAuthenticated');
 
   // console.log(store);
