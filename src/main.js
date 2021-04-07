@@ -5,6 +5,8 @@ import './assets/styles.css';
 import router from './router';
 import store from './store';
 
+console.log('✅ App Initialized');
+
 const app = createApp(App);
 // console.log(store);
 
