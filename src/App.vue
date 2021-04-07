@@ -1,10 +1,35 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <Header />
+  <main>
+    <router-view />
+  </main>
+  <!-- Show only if the user is logged in -->
+  <MobileFooter v-if="getUser" />
 </template>
+
+<script>
+import Header from './components/Header';
+import MobileFooter from './components/MobileFooter';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { computed } from '@vue/runtime-core';
+
+export default {
+  components: { Header, MobileFooter },
+  setup() {
+    const router = useRouter();
+    const store = useStore();
+
+    const getUser = computed(() => {
+      return store.getters['user/getUser'];
+    });
+    return {
+      router,
+      getUser,
+    };
+  },
+};
+</script>
 
 <style>
 #app {
@@ -13,18 +38,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  min-height: 100%;
 }
 </style>
