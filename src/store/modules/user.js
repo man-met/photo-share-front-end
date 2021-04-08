@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import router from '../../router';
 
-const url = process.env.BACK_END_URL;
+const url = process.env.VUE_APP_BACK_END_URL;
 
 console.log(url);
 

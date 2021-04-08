@@ -7,8 +7,8 @@ import store from './store';
 
 console.log('✅ App Initialized');
 console.log('URL: ');
-console.log(process.env);
-console.log(process.env.BACK_END_URL);
+// console.log(process.env);
+// console.log(process.env.VUE_APP_BACK_END_URL);
 
 const app = createApp(App);
 // console.log(store);
