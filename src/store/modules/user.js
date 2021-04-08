@@ -36,7 +36,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:8000/api/v1/users/signup',
+        url: `${url}/api/v1/users/signup`,
         data: payload.newUser,
         withCredentials: true,
       });
