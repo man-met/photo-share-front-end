@@ -4,8 +4,6 @@ import router from '../../router';
 
 const url = process.env.VUE_APP_BACK_END_URL;
 
-console.log(url);
-
 const error = ref(null);
 
 export const namespaced = true;
