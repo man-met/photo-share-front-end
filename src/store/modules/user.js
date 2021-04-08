@@ -34,7 +34,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'POST',
-        url: `${url}/api/v1/users/signup`,
+        url: `${url}api/v1/users/signup`,
         data: payload.newUser,
         withCredentials: true,
       });
@@ -57,7 +57,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'POST',
-        url: `${url}/api/v1/users/login`,
+        url: `${url}api/v1/users/login`,
         data: payload,
         withCredentials: true,
       });
@@ -74,7 +74,7 @@ export const actions = {
     try {
       await axios({
         method: 'GET',
-        url: `${url}/api/v1/users/logout`,
+        url: `${url}api/v1/users/logout`,
         withCredentials: true,
       });
       // console.log(response);
@@ -90,7 +90,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'GET',
-        url: `${url}/api/v1/users/isUserAuth`,
+        url: `${url}api/v1/users/isUserAuth`,
         withCredentials: true,
       });
       if (response.data.data) {
