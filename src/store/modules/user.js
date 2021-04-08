@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import router from '../../router';
 
-const url = process.env.BACK_END_URL;
+const url = process.env.VUE_APP_BACK_END_URL;
 
 const error = ref(null);
 
@@ -34,7 +34,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:8000/api/v1/users/signup',
+        url: `${url}api/v1/users/signup`,
         data: payload.newUser,
         withCredentials: true,
       });
@@ -57,7 +57,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'POST',
-        url: `${url}/api/v1/users/login`,
+        url: `${url}api/v1/users/login`,
         data: payload,
         withCredentials: true,
       });
@@ -74,7 +74,7 @@ export const actions = {
     try {
       await axios({
         method: 'GET',
-        url: `${url}/api/v1/users/logout`,
+        url: `${url}api/v1/users/logout`,
         withCredentials: true,
       });
       // console.log(response);
@@ -90,7 +90,7 @@ export const actions = {
     try {
       const response = await axios({
         method: 'GET',
-        url: `${url}/api/v1/users/isUserAuth`,
+        url: `${url}api/v1/users/isUserAuth`,
         withCredentials: true,
       });
       if (response.data.data) {
