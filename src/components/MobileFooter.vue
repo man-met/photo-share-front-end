@@ -21,7 +21,7 @@
       </router-link>
     </div>
     <div>
-      <router-link :to="{ name: 'Camera' }" class="mr ib">
+      <router-link :to="{ name: 'Gallery' }" class="mr ib">
         <ion-icon
           :name="
             router.currentRoute.value.name === 'Camera'

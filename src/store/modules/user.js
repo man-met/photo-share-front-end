@@ -1,10 +1,7 @@
-import { ref } from 'vue';
 import axios from 'axios';
 import router from '../../router';
 
 const url = process.env.VUE_APP_BACK_END_URL;
-
-const error = ref(null);
 
 export const namespaced = true;
 
@@ -29,8 +26,6 @@ export const mutations = {
 
 export const actions = {
   async signupAction({ commit }, payload) {
-    error.value = null;
-
     try {
       const response = await axios({
         method: 'POST',

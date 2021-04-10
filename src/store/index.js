@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 // INFO: * imports all public items into user namespace
 import * as user from './modules/user';
-import * as posts from './modules/posts';
+import * as post from './modules/post';
 
 export default createStore({
   state: {},
@@ -10,6 +10,6 @@ export default createStore({
   // use these modules
   modules: {
     user,
-    posts,
+    post,
   },
 });
