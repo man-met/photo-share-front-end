@@ -194,7 +194,21 @@
 </template>
 
 <script>
-export default {};
+import { ref } from '@vue/reactivity';
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+    const posts = ref(null);
+
+    posts.value = store.getters['post/getPost'];
+
+    // console.log(posts.value);
+
+    return {};
+  },
+};
 </script>
 
 <style></style>

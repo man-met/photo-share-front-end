@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Search from '../views/Search.vue';
 import Camera from '../views/Camera.vue';
+import Gallery from '../views/Gallery.vue';
 import Profile from '../views/Profile.vue';
 import Settings from '../views/Settings.vue';
 import Signup from '../views/Signup.vue';
@@ -44,6 +45,12 @@ const routes = [
     path: '/camera',
     name: 'Camera',
     component: Camera,
+    beforeEnter: isUserLoggedin,
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: Gallery,
     beforeEnter: isUserLoggedin,
   },
   {

@@ -5,8 +5,8 @@ import './assets/styles.css';
 import router from './router';
 import store from './store';
 
-console.log('✅ App Initialized');
-console.log('URL: ');
+// console.log('✅ App Initialized');
+// console.log('URL: ');
 // console.log(process.env);
 // console.log(process.env.VUE_APP_BACK_END_URL);
 
@@ -17,6 +17,8 @@ const authenticateUser = async () => {
   // INFO: wait to check if the user is authenticated
   // it only gets involved when the user refreshes or the user opens the page from search bar
   await store.dispatch('user/isUserAuthenticated');
+
+  // CRITICAL: You will dispatch the action here
 
   // console.log(store);
   // initiate the app

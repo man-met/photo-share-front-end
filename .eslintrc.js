@@ -10,7 +10,12 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'spaced-comment': 'off',
-    'no-console': 'warn',
+    'no-console': [
+      'warn',
+      {
+        argsIgnorePattern: 'console.log(err.message',
+      },
+    ],
     'consistent-return': 'off',
     'func-names': 'off',
     'object-shorthand': 'off',

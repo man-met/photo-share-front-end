@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <!-- <h1>{{ getUser.user.email }}</h1> -->
-    <Post :posts="posts" />
+    <Post :posts="posts" v-if="posts" />
+    <div v-else>No data to display!</div>
   </div>
 </template>
 
