@@ -29,184 +29,30 @@
       <button>Saved</button>
     </div>
   </div>
-  <div class="post-images-container">
-    <div class="post-image">
-      <img
-        class=""
-        src="https://images1.bonhams.com/image?src=Images/live/2021-03/10/H-31706-0-2.jpg&top=0.017751479289&bottom=0.905325443786&height=480&width=960"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/ferrari_f8_tributo.jpg?itok=1TG8_Tnx"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
-    </div>
-    <div class="post-image">
-      <img
-        class=""
-        src="https://www.tripsavvy.com/thmb/J8K1vZSr_wwvWxARsYXPMtP295Q=/2000x3008/filters:fill(auto,1)/Eiffel-Tower-4c710a32fca4406c81f49815312339c7.jpg"
-        alt="placeholder"
-        tabindex="0"
-      />
+  <div class="post-images-container" v-if="posts">
+    <div class="post-image" v-for="post in posts" :key="post._id">
+      <img class="" :src="post.postImage" alt="an image" tabindex="0" />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+// import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
+import { computed } from '@vue/runtime-core';
+// import { computed } from '@vue/runtime-core';
 
 export default {
   setup() {
     const store = useStore();
-    const posts = ref(null);
 
-    posts.value = store.getters['post/getPost'];
+    const posts = computed(() => {
+      return store.getters['post/getPost'];
+    });
 
-    // console.log(posts.value);
-
-    return {};
+    return {
+      posts,
+    };
   },
 };
 </script>

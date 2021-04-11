@@ -12,7 +12,9 @@ export const state = {
 
 export const mutations = {
   setPostData(state, payload) {
-    state.postData.push(payload.data);
+    for (let i = 0; i < payload.data.length; i++) {
+      state.postData.push(payload.data[i]);
+    }
   },
   setError(state, payload) {
     state.error = payload;
@@ -31,7 +33,6 @@ export const actions = {
         withCredentials: true,
       });
 
-      // console.log(response.data);
       commit('setPostData', response.data);
       router.push({ name: 'Profile' });
     } catch (err) {
@@ -42,7 +43,6 @@ export const actions = {
 
   async retrieveAllPosts({ commit }) {
     try {
-      // console.log('💥💥💥💥💥💥💥');
       // console.log(payload);
       const response = await axios({
         method: 'GET',
@@ -50,10 +50,8 @@ export const actions = {
         withCredentials: true,
       });
 
-      console.log(response);
-
       // console.log(response.data);
-      // commit('setPostData', response.data);
+      commit('setPostData', response.data);
       // router.push({ name: 'Profile' });
     } catch (err) {
       console.log(err);
