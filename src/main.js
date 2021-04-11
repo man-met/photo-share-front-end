@@ -19,6 +19,7 @@ const authenticateUser = async () => {
   await store.dispatch('user/isUserAuthenticated');
 
   // CRITICAL: You will dispatch the action here
+  // store.dispatch('post/retrieveAllPosts');
 
   // console.log(store);
   // initiate the app

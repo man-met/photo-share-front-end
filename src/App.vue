@@ -23,6 +23,16 @@ export default {
     const getUser = computed(() => {
       return store.getters['user/getUser'];
     });
+
+    store.watch((state) => {
+      console.log(' invoked');
+      if (state.user.user) {
+        console.log('i ran');
+        store.dispatch('post/retrieveAllPosts');
+      }
+    });
+    console.log(store);
+
     return {
       router,
       getUser,
