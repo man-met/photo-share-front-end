@@ -20,7 +20,7 @@ export default {
     const store = useStore();
 
     const getUser = computed(() => {
-      return store.getters['user/getUser'];
+      return store.getters['auth/getUser'];
     });
 
     const retrievePosts = async () => {

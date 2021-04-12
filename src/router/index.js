@@ -4,6 +4,7 @@ import Search from '../views/Search.vue';
 import Camera from '../views/Camera.vue';
 import Gallery from '../views/Gallery.vue';
 import Profile from '../views/Profile.vue';
+import ProfileEdit from '../views/ProfileEdit.vue';
 import Settings from '../views/Settings.vue';
 import Signup from '../views/Signup.vue';
 import Login from '../views/Login.vue';
@@ -11,17 +12,17 @@ import store from '../store/index';
 
 // TODO: check if the user is logged in
 const isUserLoggedin = (to, from, next) => {
-  if (store.getters['user/getUser']) {
+  if (store.getters['auth/getUser']) {
     next();
   } else {
     next({ name: 'Login' });
   }
-  // console.log(store.getters['user/getUser'].user);
+  // console.log(store.getters['auth/getUser'].user);
 };
 
 const isUserLoggedout = (to, from, next) => {
-  // console.log(store.getters['user/getUser']);
-  if (!store.getters['user/getUser']) {
+  // console.log(store.getters['auth/getUser']);
+  if (!store.getters['auth/getUser']) {
     next();
   } else {
     next({ name: 'Home' });
@@ -57,6 +58,12 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+    beforeEnter: isUserLoggedin,
+  },
+  {
+    path: '/profile-edit',
+    name: 'ProfileEdit',
+    component: ProfileEdit,
     beforeEnter: isUserLoggedin,
   },
   {

@@ -42,7 +42,7 @@ export default {
         password: password.value,
       };
       // console.log(store);
-      await store.dispatch('user/loginAction', user);
+      await store.dispatch('auth/loginAction', user);
     };
 
     return {
