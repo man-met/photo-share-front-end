@@ -10,7 +10,7 @@ export default {
     const store = useStore();
 
     const logoutAction = async () => {
-      await store.dispatch('user/logoutAction');
+      await store.dispatch('auth/logoutAction');
     };
 
     return {

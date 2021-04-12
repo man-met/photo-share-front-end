@@ -74,7 +74,7 @@ export default {
           password: password.value,
           password_confirm: passwordConfirm.value,
         };
-        await store.dispatch('user/signupAction', { newUser });
+        await store.dispatch('auth/signupAction', { newUser });
       } else {
         // TODO: Pass the vuex user Error so it can be displayed in the page.
         console.log('Passwords do not match!!');

@@ -21,17 +21,18 @@ export default {
     const store = useStore();
 
     const getUser = computed(() => {
-      return store.getters['user/getUser'];
+      return store.getters['auth/getUser'];
     });
 
+    // console.log(getUser.value);
+
     store.watch((state) => {
-      console.log(' invoked');
-      if (state.user.user) {
-        console.log('i ran');
+      // console.log(' invoked');
+      if (state.auth.user) {
         store.dispatch('post/retrieveAllPosts');
       }
     });
-    console.log(store);
+    // console.log(store);
 
     return {
       router,
