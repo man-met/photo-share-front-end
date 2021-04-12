@@ -39,19 +39,27 @@
 <script>
 // import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
-import { computed } from '@vue/runtime-core';
+import { computed, ref } from '@vue/runtime-core';
 // import { computed } from '@vue/runtime-core';
 
 export default {
   setup() {
     const store = useStore();
-
+    const userPosts = ref([]);
+    const user = store.getters['user/getUser'];
+    console.log(user.user._id);
     const posts = computed(() => {
-      return store.getters['post/getPost'];
+      return store.getters['post/getPost'].filter((post) => {
+        return user.user._id === post.user;
+      });
     });
+
+    console.log(store.getters['user/getUser']);
+    console.log(posts.value);
 
     return {
       posts,
+      userPosts,
     };
   },
 };
