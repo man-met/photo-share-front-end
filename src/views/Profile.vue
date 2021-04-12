@@ -2,7 +2,7 @@
   <div class="profile-header">
     <img
       class="profile-page-pic"
-      src="@/assets/profile-pic.jpeg"
+      src="@/assets/profile-pic.png"
       alt=""
       tabindex="0"
     />
