@@ -53,11 +53,11 @@ import { useStore } from 'vuex';
 
 export default {
   setup() {
-    const firstName = ref('Qasim');
-    const lastName = ref('Awan');
-    const email = ref('qasim.ak786@gmail.com');
-    const password = ref('test1234');
-    const passwordConfirm = ref('test1234');
+    const firstName = ref('');
+    const lastName = ref('');
+    const email = ref('');
+    const password = ref('');
+    const passwordConfirm = ref('');
     const signupButton = ref(null);
     const store = useStore();
     // const router = useRouter();
