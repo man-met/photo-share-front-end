@@ -4,21 +4,24 @@
     <Post :posts="posts" v-if="posts" />
     <div v-else>No data to display!</div>
     <h1 v-if="allPostsRetrieved">No more posts!</h1>
+    <p v-if="isLoading">Loading...</p>
   </div>
 </template>
 
 <script>
 // import { getPosts } from '../composables/axiosCalls';
 import Post from '../components/Post';
-// import { ref } from '@vue/reactivity';
+import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
-import { computed, onMounted, onUnmounted } from '@vue/runtime-core';
+import { computed, onMounted, onUnmounted, watch } from '@vue/runtime-core';
 import { orderBy } from 'natural-orderby';
 
 export default {
   components: { Post },
   setup() {
     const store = useStore();
+    const isLoading = ref(false);
+    console.log(isLoading.value);
     // const isInitialRequestLoading = ref(true);
 
     const getUser = computed(() => {
@@ -31,6 +34,11 @@ export default {
       ]);
     });
 
+    watch(posts, () => {
+      console.log('post has changed');
+      isLoading.value = false;
+    });
+
     const allPostsRetrieved = computed(() => {
       return store.getters['post/getAllPostsRetrievedValue'];
     });
@@ -38,14 +46,13 @@ export default {
     const handleScroll = () => {
       if (allPostsRetrieved.value) {
         // console.log('Beta');
+        isLoading.value = false;
         window.removeEventListener('scroll', handleScroll);
       } else if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 1 &&
+        !isLoading.value
       ) {
-        console.log(allPostsRetrieved.value);
-        // console.log('Alpha');
-
+        isLoading.value = true;
         store.dispatch('post/retrieveAllPosts', getUser.value);
       }
     };
@@ -64,6 +71,7 @@ export default {
       posts,
       getUser,
       allPostsRetrieved,
+      isLoading,
     };
   },
 };
