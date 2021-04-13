@@ -4,6 +4,7 @@
     <Post :posts="posts" v-if="posts" />
     <div v-else>No data to display!</div>
     <h1 v-if="allPostsRetrieved">No more posts!</h1>
+    <p v-if="isLoading">Loading...</p>
   </div>
 </template>
 
@@ -45,6 +46,7 @@ export default {
     const handleScroll = () => {
       if (allPostsRetrieved.value) {
         // console.log('Beta');
+        isLoading.value = false;
         window.removeEventListener('scroll', handleScroll);
       } else if (
         window.innerHeight + window.scrollY >= document.body.offsetHeight - 1 &&
@@ -69,6 +71,7 @@ export default {
       posts,
       getUser,
       allPostsRetrieved,
+      isLoading,
     };
   },
 };
