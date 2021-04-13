@@ -10,6 +10,13 @@ import store from './store';
 // console.log(process.env);
 // console.log(process.env.VUE_APP_BACK_END_URL);
 
+if (
+  process.env.NODE_ENV === 'production' &&
+  !window.location.href.startsWith('https')
+) {
+  window.location.replace('https://manmetquickchat.herokuapp.com');
+}
+
 const app = createApp(App);
 // console.log(store);
 
