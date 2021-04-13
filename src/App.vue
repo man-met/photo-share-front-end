@@ -28,7 +28,7 @@ export default {
 
     store.watch((state) => {
       if (state.auth.user && state.post.publicPosts.length === 0) {
-        store.dispatch('post/retrieveAllPosts');
+        store.dispatch('post/retrieveAllPosts', getUser.value);
       }
     });
     // console.log(store);

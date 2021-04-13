@@ -12,7 +12,7 @@ import store from '../store/index';
 
 // TODO: check if the user is logged in
 const isUserLoggedin = (to, from, next) => {
-  console.clear();
+  // console.clear();
   if (store.getters['auth/getUser']) {
     next();
   } else {
@@ -22,7 +22,7 @@ const isUserLoggedin = (to, from, next) => {
 };
 
 const isUserLoggedout = (to, from, next) => {
-  console.clear();
+  // console.clear();
   // console.log(store.getters['auth/getUser']);
   if (!store.getters['auth/getUser']) {
     next();
