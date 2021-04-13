@@ -10,7 +10,13 @@
       placeholder="Write a caption..."
       v-model="caption"
     ></textarea>
-    <button class="primary" @click="uploadImage">Share</button>
+    <button
+      :class="isActive ? 'disabled' : 'primary'"
+      :disabled="isActive"
+      @click="uploadImage"
+    >
+      Share
+    </button>
   </div>
   <div v-if="!postImage" class="file-input">
     <input
@@ -34,6 +40,7 @@ export default {
     const postImageURL = ref('');
     const caption = ref('');
     const store = useStore();
+    const isActive = ref(false);
 
     const onInputFileChange = (event) => {
       postImage.value = event.target.files[0];
@@ -46,10 +53,11 @@ export default {
     };
 
     const uploadImage = async () => {
+      isActive.value = true;
       const form = new FormData();
       form.append('postImage', postImage.value);
       form.append('caption', caption.value);
-      // console.log(store);
+      // // console.log(store);
 
       await store.dispatch('post/createPostAction', form);
       // console.log('upload image triggered');
@@ -62,6 +70,7 @@ export default {
       onInputFileChange,
       removeImage,
       uploadImage,
+      isActive,
     };
   },
 };
