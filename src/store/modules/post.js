@@ -48,13 +48,13 @@ export const actions = {
     }
   },
 
-  async retrieveAllPosts({ commit }, payload) {
+  async retrieveAllPosts({ commit }) {
     currentPage.value++;
     try {
-      const { user } = payload;
+      // const { user } = payload;
 
-      console.log(user._id);
-      console.log(state.publicPosts);
+      // console.log(user._id);
+      // console.log(state.publicPosts);
       // console.log(payload);
       const response = await axios({
         method: 'GET',
