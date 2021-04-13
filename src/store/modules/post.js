@@ -6,14 +6,14 @@ const url = process.env.VUE_APP_BACK_END_URL;
 export const namespaced = true;
 
 export const state = {
-  postData: [],
+  publicPosts: [],
   error: null,
 };
 
 export const mutations = {
-  setPostData(state, payload) {
+  setPublicPosts(state, payload) {
     for (let i = 0; i < payload.data.length; i++) {
-      state.postData.push(payload.data[i]);
+      state.publicPosts.push(payload.data[i]);
     }
   },
   setError(state, payload) {
@@ -33,7 +33,7 @@ export const actions = {
         withCredentials: true,
       });
 
-      commit('setPostData', response.data);
+      commit('setPublicPosts', response.data);
       router.push({ name: 'Profile' });
     } catch (err) {
       console.log(err);
@@ -51,7 +51,7 @@ export const actions = {
       });
 
       // console.log(response.data);
-      commit('setPostData', response.data);
+      commit('setPublicPosts', response.data);
       // router.push({ name: 'Profile' });
     } catch (err) {
       console.log(err);
@@ -62,6 +62,6 @@ export const actions = {
 
 export const getters = {
   getPost(state) {
-    return state.postData;
+    return state.publicPosts;
   },
 };

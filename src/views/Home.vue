@@ -7,27 +7,29 @@
 </template>
 
 <script>
-import { getPosts } from '../composables/axiosCalls';
+// import { getPosts } from '../composables/axiosCalls';
 import Post from '../components/Post';
-import { ref } from '@vue/reactivity';
+// import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
 import { computed } from '@vue/runtime-core';
+import { orderBy } from 'natural-orderby';
 
 export default {
   components: { Post },
   setup() {
-    const posts = ref(null);
     const store = useStore();
 
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
     });
 
-    const retrievePosts = async () => {
-      posts.value = await getPosts();
-    };
-    // console.log(store);
-    retrievePosts();
+    const posts = computed(() => {
+      return orderBy(store.getters['post/getPost'], (a) => a.createdAt, [
+        'desc',
+      ]);
+    });
+
+    // console.log(posts.value);
     return {
       posts,
       getUser,

@@ -27,8 +27,7 @@ export default {
     // console.log(getUser.value);
 
     store.watch((state) => {
-      // console.log(' invoked');
-      if (state.auth.user) {
+      if (state.auth.user && state.post.publicPosts.length === 0) {
         store.dispatch('post/retrieveAllPosts');
       }
     });

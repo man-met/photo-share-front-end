@@ -121,7 +121,7 @@ export default {
   width: 150px;
   height: 150px;
   clip-path: circle(75px at center);
-  z-index: -1;
+  /* z-index: -1; */
   margin-bottom: 15px;
 }
 
