@@ -58,7 +58,9 @@ a {
 .primary,
 .success,
 .danger,
-.warning {
+.warning,
+.cancel,
+.disabled {
   cursor: pointer;
   margin: 5px;
   background: #1d72e7;
@@ -68,6 +70,17 @@ a {
   padding: 8px 16px;
   font-size: 18px;
   outline: none;
+}
+
+.cancel {
+  background: #cccccc;
+  color: #666666;
+}
+
+.disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
 }
 
 /* mobile-first */

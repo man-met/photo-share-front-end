@@ -32,8 +32,20 @@
       v-model="bio"
     ></textarea>
     <div>
-      <button class="primary mt" @click="submitData">Save</button>
-      <button class="danger mt" @click="router.push({ name: 'Profile' })">
+      <button
+        class="mt"
+        :class="isActive ? 'disabled' : 'primary'"
+        :disabled="isActive"
+        @click="submitData"
+      >
+        Save
+      </button>
+      <button
+        class="mt"
+        :class="isActive ? 'disabled' : 'cancel'"
+        :disabled="isActive"
+        @click="router.push({ name: 'Profile' })"
+      >
         Cancel
       </button>
     </div>
@@ -56,6 +68,9 @@ export default {
     const bio = ref(user.user.bio);
     const photo = ref(user.user.photo);
     const newProfilePhoto = ref(null);
+    const isActive = ref(false);
+
+    // console.log(submit);
 
     const onInputFileChange = (event) => {
       newProfilePhoto.value = event.target.files[0];
@@ -66,6 +81,7 @@ export default {
 
     const submitData = async () => {
       // console.log('Ready to rock!');
+      isActive.value = true;
       const form = new FormData();
       form.append('first_name', firstName.value);
       form.append('last_name', lastName.value);
@@ -87,6 +103,7 @@ export default {
       onInputFileChange,
       router,
       submitData,
+      isActive,
     };
   },
 };
