@@ -1,4 +1,5 @@
 exports.timeSince = (createdAt) => {
+  createdAt = new Date(createdAt).getTime();
   const timeElapsed = Date.now() - createdAt;
   const seconds = timeElapsed / 1000;
 
@@ -40,7 +41,7 @@ exports.timeSince = (createdAt) => {
 
   interval = seconds / 86400;
   if (interval > 1) {
-    return Math.floor(interval) + ' days ago';
+    return Math.floor(interval) + ' day(s) ago';
   }
 
   interval = seconds / 3600;

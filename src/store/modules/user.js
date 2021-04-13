@@ -5,9 +5,21 @@ const url = process.env.VUE_APP_BACK_END_URL;
 
 export const namespaced = true;
 
-export const state = {};
+export const state = {
+  userPosts: [],
+  error: null,
+};
 
-export const mutations = {};
+export const mutations = {
+  setuserPosts(state, payload) {
+    for (let i = 0; i < payload.data.length; i++) {
+      state.userPosts.push(payload.data[i]);
+    }
+  },
+  setError(state, payload) {
+    state.error = payload;
+  },
+};
 
 export const actions = {
   async editUserProfileAction({ commit }, payload) {

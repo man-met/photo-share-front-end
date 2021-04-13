@@ -5,11 +5,6 @@ import './assets/styles.css';
 import router from './router';
 import store from './store';
 
-// console.log('✅ App Initialized');
-// console.log('URL: ');
-// console.log(process.env);
-// console.log(process.env.VUE_APP_BACK_END_URL);
-
 if (
   process.env.NODE_ENV === 'production' &&
   !window.location.href.startsWith('https')

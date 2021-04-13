@@ -75,7 +75,7 @@ export default {
   width: 84px;
   height: 84px;
   clip-path: circle(42px at center);
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .profile-stats {

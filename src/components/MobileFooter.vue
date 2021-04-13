@@ -24,9 +24,9 @@
       <router-link :to="{ name: 'Gallery' }" class="mr ib">
         <ion-icon
           :name="
-            router.currentRoute.value.name === 'Camera'
-              ? 'camera'
-              : 'camera-outline'
+            router.currentRoute.value.name === 'Gallery'
+              ? 'images'
+              : 'images-outline'
           "
         ></ion-icon>
       </router-link>
@@ -68,4 +68,37 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: black;
+  border-top: 1px solid rgb(36, 36, 36);
+}
+
+footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+#logo {
+  font-family: 'Lobster', cursive;
+  padding: 10px 0px 10px 15px;
+  text-align: left;
+}
+
+ion-icon {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+}
+</style>
