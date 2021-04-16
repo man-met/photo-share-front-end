@@ -3,8 +3,10 @@
   <div v-if="wait">
     <div class="post-card" v-for="post in posts" :key="post._id">
       <div class="post-header">
-        <img class="profile-pic" src="img/default.jpeg" alt="" tabindex="0" />
-        <p class="username">{{ post.user }}</p>
+        <img class="profile-pic" :src="post.user.photo" alt="" tabindex="0" />
+        <p class="username">
+          {{ post.user.first_name }} {{ post.user.last_name }}
+        </p>
       </div>
       <div class="post-content">
         <img class="" :src="post.postImage" alt="placeholder" tabindex="0" />
@@ -28,7 +30,9 @@
         </section>
         <div class="caption-container m-sm">
           <router-link :to="{ name: 'Home' }"
-            ><span class="b">{{ post.user }}</span></router-link
+            ><span class="b"
+              >{{ post.user.first_name }} {{ post.user.last_name }}</span
+            ></router-link
           >
           <span class="ml">{{ post.caption }}</span>
           <!-- commented

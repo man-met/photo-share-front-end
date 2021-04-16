@@ -35,7 +35,6 @@ export default {
     });
 
     watch(posts, () => {
-      console.log('post has changed');
       isLoading.value = false;
     });
 
