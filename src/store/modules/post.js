@@ -63,7 +63,6 @@ export const actions = {
         withCredentials: true,
       });
       // console.clear();
-      // console.log(response.data);
 
       if (response.data.data.length) {
         // console.log('I ran');

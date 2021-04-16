@@ -16,7 +16,7 @@
   </div>
   <div class="profile-bio">
     <p>
-      <b>{{ user.user.first_name }}</b>
+      <b>{{ user.user.first_name }} {{ user.user.last_name }}</b>
     </p>
     <p>{{ user.user.bio }}</p>
   </div>
