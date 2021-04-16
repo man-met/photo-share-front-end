@@ -21,7 +21,7 @@ export default {
   setup() {
     const store = useStore();
     const isLoading = ref(false);
-    console.log(isLoading.value);
+    // console.log(isLoading.value);
     // const isInitialRequestLoading = ref(true);
 
     const getUser = computed(() => {
