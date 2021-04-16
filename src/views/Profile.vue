@@ -51,7 +51,7 @@ export default {
 
     const posts = computed(() => {
       return store.getters['post/getPost'].filter((post) => {
-        return user.value.user._id === post.user;
+        return user.value.user.email === post.user.email;
       });
     });
 
