@@ -16,9 +16,9 @@ export const mutations = {
   setUser(state, payload) {
     state.user = payload;
   },
-  setToken(state, payload) {
-    state.token = payload;
-  },
+  // setToken(state, payload) {
+  //   state.token = payload;
+  // },
   setError(state, payload) {
     state.error = payload;
   },
