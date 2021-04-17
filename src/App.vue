@@ -12,7 +12,7 @@ import Header from './components/Header';
 import MobileFooter from './components/MobileFooter';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed } from '@vue/runtime-core';
+import { computed, watch } from '@vue/runtime-core';
 
 export default {
   components: { Header, MobileFooter },
@@ -24,14 +24,34 @@ export default {
       return store.getters['auth/getUser'];
     });
 
-    // console.log(getUser.value);
+    console.log(store);
 
-    store.watch((state) => {
-      if (state.auth.user && state.post.publicPosts.length === 0) {
-        store.dispatch('post/retrieveAllPosts', getUser.value);
-      }
+    const getPublicPosts = computed(() => {
+      return store.getters['post/getPublicPosts'];
     });
-    // console.log(store);
+
+    const getLoggedInUsersPosts = computed(() => {
+      return store.getters['user/getLoggedInUsersPosts'];
+    });
+
+    if (getUser.value) {
+      if (getPublicPosts.value.length === 0) {
+        store.dispatch('post/retrieveAllPosts', getUser.value);
+        watch([getUser.value, getPublicPosts.value], () => {
+          if (getUser.value && getPublicPosts.value.length === 0) {
+            console.log('invoked');
+            store.dispatch('post/retrieveAllPosts', getUser.value);
+          }
+        });
+      }
+
+      if (getLoggedInUsersPosts.value.length === 0) {
+        store.dispatch('user/getLoggedInUsersPosts', getUser.value);
+        watch([getUser.value, getLoggedInUsersPosts.value], () => {
+          console.log(getLoggedInUsersPosts.value);
+        });
+      }
+    }
 
     return {
       router,

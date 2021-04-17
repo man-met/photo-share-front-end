@@ -51,18 +51,12 @@ export const actions = {
   async retrieveAllPosts({ commit }) {
     currentPage.value++;
     try {
-      // const { user } = payload;
-
-      // console.log(user._id);
-      // console.log(state.publicPosts);
-      // console.log(payload);
       const response = await axios({
         method: 'GET',
-        // url: `${url}api/v1/posts/get-posts?user=${user._id}`,
         url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
         withCredentials: true,
       });
-      // console.clear();
+      console.log(response.data.data);
 
       if (response.data.data.length) {
         // console.log('I ran');
@@ -81,7 +75,7 @@ export const actions = {
 };
 
 export const getters = {
-  getPost(state) {
+  getPublicPosts(state) {
     return state.publicPosts;
   },
   getAllPostsRetrievedValue(state) {
