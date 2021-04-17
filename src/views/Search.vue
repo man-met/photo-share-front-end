@@ -67,7 +67,7 @@ export default {
 
 .item-wrapper {
   padding: 10px;
-  border: 2px solid white;
+  border: 2px solid #dfdfdf;
 }
 
 .item-heading {

@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="mobile-footer">
     <div>
       <router-link :to="{ name: 'Home' }" class="mr ib">
         <ion-icon
@@ -58,6 +58,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
+
 export default {
   setup() {
     const router = useRouter();

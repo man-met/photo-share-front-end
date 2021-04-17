@@ -1,6 +1,11 @@
 <template>
   <div class="profile-header">
-    <img class="profile-page-pic" :src="user.user.photo" alt="" tabindex="0" />
+    <img
+      class="profile-page-pic"
+      :src="getUser.user.photo"
+      alt=""
+      tabindex="0"
+    />
     <div class="profile-stats">
       <p>#</p>
       <p>Posts</p>
@@ -16,9 +21,9 @@
   </div>
   <div class="profile-bio">
     <p>
-      <b>{{ user.user.first_name }} {{ user.user.last_name }}</b>
+      <b>{{ getUser.user.first_name }} {{ getUser.user.last_name }}</b>
     </p>
-    <p>{{ user.user.bio }}</p>
+    <p>{{ getUser.user.bio }}</p>
   </div>
   <div class="profile-buttons-container">
     <div class="profile-buttons">
@@ -36,27 +41,62 @@
 <script>
 // import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
-import { computed } from '@vue/runtime-core';
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from '@vue/runtime-core';
 // import { computed } from '@vue/runtime-core';
 
 export default {
   setup() {
     const store = useStore();
-    const user = computed(() => {
+    const isLoading = ref(false);
+
+    const getUser = computed(() => {
       return store.getters['auth/getUser'];
     });
 
-    // console.log(user.value);
-    // console.log(user.value.user._id);
-
     const posts = computed(() => {
-      return store.getters['post/getPost'].filter((post) => {
-        return user.value.user.email === post.user.email;
-      });
+      return store.getters['user/getLoggedInUsersPosts'];
+    });
+
+    const allPostsRetrieved = computed(() => {
+      return store.getters['user/getAllPostsRetrievedValue'];
+      // return false;
+    });
+
+    const unwatch = watch(posts.value, () => {
+      isLoading.value = false;
+    });
+
+    const handleScroll = () => {
+      if (allPostsRetrieved.value) {
+        isLoading.value = false;
+        window.removeEventListener('scroll', handleScroll);
+      } else if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 3 &&
+        !isLoading.value
+      ) {
+        isLoading.value = true;
+        store.dispatch('user/getLoggedInUsersPosts', getUser.value);
+      }
+    };
+
+    onMounted(() => {
+      window.addEventListener('scroll', handleScroll);
+    });
+
+    onUnmounted(() => {
+      unwatch();
+      // it is important to remove the event listener to avoid memory leaks
+      window.removeEventListener('scroll', handleScroll);
     });
 
     return {
-      user,
+      getUser,
       posts,
     };
   },
@@ -111,6 +151,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
+  margin-bottom: 10px;
 }
 
 .post-image {

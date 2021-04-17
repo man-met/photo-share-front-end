@@ -1,20 +1,27 @@
+import { ref } from '@vue/reactivity';
 import axios from 'axios';
 import router from '../../router';
 
 const url = process.env.VUE_APP_BACK_END_URL;
 
+const currentPage = ref(0);
+
 export const namespaced = true;
 
 export const state = {
-  userPosts: [],
+  allPostsRetrieved: false,
+  currentUsersPosts: [],
   userProfiles: [],
   error: null,
 };
 
 export const mutations = {
-  setuserPosts(state, payload) {
+  setAllPostsRetrieved(state) {
+    state.allPostsRetrieved = true;
+  },
+  setUserPosts(state, payload) {
     for (let i = 0; i < payload.data.length; i++) {
-      state.userPosts.push(payload.data[i]);
+      state.currentUsersPosts.push(payload.data[i]);
     }
   },
   setUserProfiles(state, payload) {
@@ -30,6 +37,32 @@ export const mutations = {
 };
 
 export const actions = {
+  async getLoggedInUsersPosts({ commit }, payload) {
+    currentPage.value++;
+    try {
+      const { user } = payload;
+
+      const response = await axios({
+        method: 'GET',
+        url: `${url}api/v1/posts/get-posts?user=${user._id}&limit=12&page=${currentPage.value}`,
+        // url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
+        withCredentials: true,
+      });
+      console.log(response.data.data.length);
+      if (response.data.data.length) {
+        // console.log('I ran');
+        commit('setUserPosts', response.data);
+      } else {
+        console.log('Last Data Retrieved!');
+        commit('setAllPostsRetrieved');
+      }
+      // router.push({ name: 'Profile' });
+    } catch (err) {
+      console.log(err);
+      return commit('setError', err.message);
+    }
+  },
+
   async getUserProfiles({ commit }, payload) {
     try {
       const response = await axios({
@@ -69,5 +102,12 @@ export const actions = {
 export const getters = {
   getUserProfiles(state) {
     return state.userProfiles;
+  },
+
+  getLoggedInUsersPosts(state) {
+    return state.currentUsersPosts;
+  },
+  getAllPostsRetrievedValue(state) {
+    return state.allPostsRetrieved;
   },
 };

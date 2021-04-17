@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- <h1>{{ getUser.user.email }}</h1> -->
-    <Post :posts="posts" v-if="posts" />
+    <Post :posts="posts" v-if="posts.length" />
     <div v-else>No data to display!</div>
     <h1 v-if="allPostsRetrieved">No more posts!</h1>
     <p v-if="isLoading">Loading...</p>
@@ -29,12 +29,12 @@ export default {
     });
 
     const posts = computed(() => {
-      return orderBy(store.getters['post/getPost'], (a) => a.createdAt, [
+      return orderBy(store.getters['post/getPublicPosts'], (a) => a.createdAt, [
         'desc',
       ]);
     });
 
-    watch(posts, () => {
+    const unwatch = watch(posts, () => {
       isLoading.value = false;
     });
 
@@ -62,6 +62,7 @@ export default {
 
     onUnmounted(() => {
       // it is important to remove the event listener to avoid memory leaks
+      unwatch();
       window.removeEventListener('scroll', handleScroll);
     });
 
