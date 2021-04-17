@@ -8,9 +8,15 @@
 
   <div class="users-profiles-container" v-if="queryResult">
     <!-- <p>{{ queryResult }}</p> -->
-    <div v-for="item in queryResult" :key="item._id" class="item-wrapper">
-      <p class="item-heading">{{ item.first_name }} {{ item.last_name }}</p>
-      <img :src="item.photo" class="profile-page-pic" />
+    <div v-for="item in queryResult" :key="item._id">
+      <router-link
+        :to="{ name: 'ProfileExternalUser', params: { userId: item._id } }"
+      >
+        <div class="item-wrapper">
+          <p class="item-heading">{{ item.first_name }} {{ item.last_name }}</p>
+          <img :src="item.photo" class="profile-page-pic" />
+        </div>
+      </router-link>
       <!-- <img src="profile-pic" /> -->
     </div>
   </div>
@@ -19,7 +25,7 @@
 <script>
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
-import { computed, watch } from '@vue/runtime-core';
+import { computed, onUnmounted, watch } from '@vue/runtime-core';
 
 export default {
   setup() {
@@ -30,13 +36,23 @@ export default {
       return store.getters['user/getUserProfiles'];
     });
 
-    watch(searchKeyword, () => {
+    // watch(queryResult, () => {
+    //   console.log(queryResult.value);
+    // });
+
+    const unwatch = watch(searchKeyword, () => {
       // console.log(searchKeyword.value);
       if (searchKeyword.value.length) {
         store.dispatch('user/getUserProfiles', searchKeyword.value);
       } else {
         store.commit('user/setUserProfiles');
       }
+    });
+
+    onUnmounted(() => {
+      unwatch();
+      store.commit('user/setUserProfiles');
+      searchKeyword.value = '';
     });
 
     return {

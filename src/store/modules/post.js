@@ -56,7 +56,7 @@ export const actions = {
         url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
         withCredentials: true,
       });
-      console.log(response.data.data);
+      // console.log(response.data.data);
 
       if (response.data.data.length) {
         // console.log('I ran');

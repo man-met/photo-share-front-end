@@ -48,7 +48,8 @@ export default {
       if (getLoggedInUsersPosts.value.length === 0) {
         store.dispatch('user/getLoggedInUsersPosts', getUser.value);
         watch([getUser.value, getLoggedInUsersPosts.value], () => {
-          console.log(getLoggedInUsersPosts.value);
+          console.log('YOU HAVE WORK TO DO HERE');
+          // console.clear();
         });
       }
     }
