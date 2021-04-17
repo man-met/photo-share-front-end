@@ -48,7 +48,7 @@ export const actions = {
         // url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
         withCredentials: true,
       });
-      console.log(response.data.data.length);
+      // console.log(response.data.data.length);
       if (response.data.data.length) {
         // console.log('I ran');
         commit('setUserPosts', response.data);

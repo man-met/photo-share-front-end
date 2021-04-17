@@ -4,6 +4,7 @@ import Search from '../views/Search.vue';
 import Camera from '../views/Camera.vue';
 import Gallery from '../views/Gallery.vue';
 import Profile from '../views/Profile.vue';
+import ProfileExternalUser from '../views/ProfileExternalUser.vue';
 import ProfileEdit from '../views/ProfileEdit.vue';
 import Settings from '../views/Settings.vue';
 import Signup from '../views/Signup.vue';
@@ -61,6 +62,13 @@ const routes = [
     name: 'Profile',
     component: Profile,
     beforeEnter: isUserLoggedin,
+  },
+  {
+    path: '/user/:userId',
+    name: 'ProfileExternalUser',
+    component: ProfileExternalUser,
+    beforeEnter: isUserLoggedin,
+    props: true,
   },
   {
     path: '/profile-edit',
