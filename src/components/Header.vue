@@ -1,11 +1,69 @@
 <template>
   <header>
-    <h1 id="logo">Quick Chat</h1>
+    <div class="header-container">
+      <h1 id="logo">Quick Chat</h1>
+      <div class="main-footer">
+        <router-link :to="{ name: 'Home' }"
+          ><ion-icon
+            :name="
+              router.currentRoute.value.name === 'Home'
+                ? 'home'
+                : 'home-outline'
+            "
+          ></ion-icon
+        ></router-link>
+        <router-link :to="{ name: 'Search' }"
+          ><ion-icon
+            :name="
+              router.currentRoute.value.name === 'Search'
+                ? 'search-circle'
+                : 'search-circle-outline'
+            "
+          ></ion-icon
+        ></router-link>
+        <router-link :to="{ name: 'Gallery' }"
+          ><ion-icon
+            :name="
+              router.currentRoute.value.name === 'Gallery'
+                ? 'images'
+                : 'images-outline'
+            "
+          ></ion-icon
+        ></router-link>
+        <router-link :to="{ name: 'Profile' }"
+          ><ion-icon
+            :name="
+              router.currentRoute.value.name === 'Profile'
+                ? 'person-circle'
+                : 'person-circle-outline'
+            "
+          ></ion-icon
+        ></router-link>
+        <router-link :to="{ name: 'Settings' }"
+          ><ion-icon
+            :name="
+              router.currentRoute.value.name === 'Settings'
+                ? 'settings'
+                : 'settings-outline'
+            "
+          ></ion-icon
+        ></router-link>
+      </div>
+    </div>
   </header>
 </template>
 
 <script>
-export default {};
+import { useRouter } from 'vue-router';
+
+export default {
+  setup() {
+    const router = useRouter();
+    return {
+      router,
+    };
+  },
+};
 </script>
 
 <style>
