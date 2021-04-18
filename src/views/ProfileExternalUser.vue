@@ -31,7 +31,7 @@
     </div>
     <div class="profile-buttons-container">
       <div class="profile-buttons">
-        <button class="primary" @click="debug">Follow</button>
+        <button class="primary" @click="startFollowing">Follow</button>
       </div>
     </div>
     <div class="post-images-container" v-if="externalUserPosts">
@@ -93,8 +93,8 @@ export default {
       }
     };
 
-    const debug = () => {
-      alert('invoked');
+    const startFollowing = () => {
+      store.dispatch('user/startFollowingAction', props.userId);
     };
 
     onMounted(() => {
@@ -111,7 +111,7 @@ export default {
     return {
       externalUser,
       externalUserPosts,
-      debug,
+      startFollowing,
     };
   },
 };
