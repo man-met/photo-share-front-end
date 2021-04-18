@@ -11,11 +11,11 @@
       <p>Posts</p>
     </div>
     <div class="profile-stats">
-      <p>#</p>
+      <p>{{ followers.length }}</p>
       <p>Followers</p>
     </div>
     <div class="profile-stats">
-      <p>#</p>
+      <p>{{ followings.length }}</p>
       <p>Following</p>
     </div>
   </div>
@@ -55,6 +55,8 @@ export default {
     const store = useStore();
     const isLoading = ref(false);
 
+    store.dispatch('user/getFollowersData');
+
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
     });
@@ -66,6 +68,14 @@ export default {
     const allPostsRetrieved = computed(() => {
       return store.getters['user/getAllPostsRetrievedValue'];
       // return false;
+    });
+
+    const followers = computed(() => {
+      return store.getters['user/getFollowers'];
+    });
+
+    const followings = computed(() => {
+      return store.getters['user/getFollowings'];
     });
 
     const unwatch = watch(posts.value, () => {
@@ -98,6 +108,8 @@ export default {
     return {
       getUser,
       posts,
+      followers,
+      followings,
     };
   },
 };

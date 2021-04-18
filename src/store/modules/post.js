@@ -58,9 +58,10 @@ export const actions = {
       });
       // console.log(response.data.data);
 
-      if (response.data.data.length) {
+      if (response.data && response.data.data.length) {
         // console.log('I ran');
         commit('setPublicPosts', response.data);
+        // CRITICAL: Instead of having else you should have an else if to check if the length is 0 otherwise set the error
       } else {
         // console.log('Last Data Retrieved!');
         commit('setAllPostsRetrieved');
