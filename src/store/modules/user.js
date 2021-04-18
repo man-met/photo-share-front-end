@@ -12,6 +12,8 @@ export const state = {
   allPostsRetrieved: false,
   currentUsersPosts: [],
   userProfiles: [],
+  followers: [],
+  followings: [],
   error: null,
 };
 
@@ -29,6 +31,20 @@ export const mutations = {
       state.userProfiles = payload.users;
     } else {
       state.userProfiles.length = 0;
+    }
+  },
+  setFollowers(state, payload) {
+    if (payload.length > 0) {
+      state.followers = payload;
+    } else {
+      state.followers.length = 0;
+    }
+  },
+  setFollowings(state, payload) {
+    if (payload) {
+      state.followings = payload;
+    } else {
+      state.followings.length = 0;
     }
   },
   setError(state, payload) {
@@ -97,17 +113,58 @@ export const actions = {
       return commit('setError', err.message);
     }
   },
+
+  async getFollowersData({ commit }) {
+    try {
+      const response = await axios({
+        method: 'GET',
+        url: `${url}api/v1/followers/`,
+        withCredentials: true,
+      });
+
+      commit('setFollowers', response.data.data.followers);
+      commit('setFollowings', response.data.data.followings);
+    } catch (err) {
+      console.log(err);
+      return commit('setError', err.message);
+    }
+  },
+
+  async startFollowingAction({ commit, dispatch }, payload) {
+    try {
+      const response = await axios({
+        method: 'POST',
+        url: `${url}api/v1/followers/`,
+        data: {
+          userToFollow: payload,
+        },
+        withCredentials: true,
+      });
+
+      if (response && response.status === 201) {
+        dispatch('getFollowersData');
+      }
+    } catch (err) {
+      console.log(err);
+      return commit('setError', err.message);
+    }
+  },
 };
 
 export const getters = {
   getUserProfiles(state) {
     return state.userProfiles;
   },
-
   getLoggedInUsersPosts(state) {
     return state.currentUsersPosts;
   },
   getAllPostsRetrievedValue(state) {
     return state.allPostsRetrieved;
+  },
+  getFollowers(state) {
+    return state.followers;
+  },
+  getFollowings(state) {
+    return state.followings;
   },
 };
