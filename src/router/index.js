@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Search from '../views/Search.vue';
 import Camera from '../views/Camera.vue';
+import Comments from '../views/Comments.vue';
 import Gallery from '../views/Gallery.vue';
 import Profile from '../views/Profile.vue';
 import ProfileExternalUser from '../views/ProfileExternalUser.vue';
@@ -50,6 +51,13 @@ const routes = [
     name: 'Camera',
     component: Camera,
     beforeEnter: isUserLoggedin,
+  },
+  {
+    path: '/comments/:jsonPost',
+    name: 'Comments',
+    component: Comments,
+    beforeEnter: isUserLoggedin,
+    props: true,
   },
   {
     path: '/gallery',
