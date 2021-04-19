@@ -17,7 +17,31 @@
         <p>{{ post.caption }}</p>
       </div>
     </div>
-    <div id="comments-body"></div>
+    <div id="comments-body" v-if="allComments">
+      <div
+        v-for="comment in allComments"
+        :key="comment._id"
+        class="mb each-comment"
+      >
+        <span class="mr">
+          <img
+            class="profile-page-pic-small"
+            :src="comment.user.photo"
+            alt=""
+            tabindex="0"
+          />
+        </span>
+        <span class="b mr"
+          >{{ comment.user.first_name }} {{ comment.user.last_name }}</span
+        >
+        <span>{{ comment.comment }}</span>
+        <span>
+          <p>
+            {{ timeSince(comment.createdAt) }}
+          </p>
+        </span>
+      </div>
+    </div>
     <div class="comments-box-container">
       <input
         type="text"
@@ -38,6 +62,8 @@
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import { computed, watch } from '@vue/runtime-core';
+import { timeSince } from '../composables/utils';
 
 export default {
   props: { jsonPost: { type: String, required: true } },
@@ -46,6 +72,16 @@ export default {
     const post = ref(JSON.parse(props.jsonPost));
     const store = useStore();
     const comment = ref('');
+
+    const allComments = computed(() => {
+      return store.getters['comment/getComments'];
+    });
+
+    watch(allComments, () => {
+      console.log(allComments.value);
+    });
+
+    store.dispatch('comment/getCommentsAction', post.value._id);
 
     const goBack = () => {
       router.back();
@@ -68,7 +104,9 @@ export default {
       post,
       goBack,
       comment,
+      allComments,
       submitComment,
+      timeSince,
     };
   },
 };
@@ -81,12 +119,14 @@ export default {
   background: black;
   width: 100%;
   border-bottom: 1px solid rgb(36, 36, 36);
+  padding: 10px 0;
+  z-index: 4;
 }
 
 .comments-banner {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  /* padding: 10px 0; */
 }
 
 .nmb {
@@ -103,7 +143,7 @@ export default {
 .comments-header {
   display: flex;
   align-items: center;
-  margin: 15px 0;
+  /* margin: 15px 0; */
   /* border: 1px solid white; */
 }
 
@@ -113,11 +153,15 @@ export default {
 }
 
 #comments-body {
-  margin-top: 120px;
+  margin-top: 100px;
   margin-bottom: 70px;
   margin-left: 15px;
   margin-right: 15px;
   text-align: left;
+}
+
+.each-comment {
+  padding: 5px;
 }
 
 .comments-box-container {

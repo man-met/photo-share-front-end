@@ -52,21 +52,48 @@
           >
           commented -->
           <section class="m-small">
-            <!-- <router-link :to="{ name: 'Home' }" class="b ib m-small">
-              <p>
-                View All <span>{{ post.comments.length }}</span> Comments
-              </p>
-            </router-link> -->
-            <!-- commented
-            <div class="mb" v-for="comment in post.comments" :key="comment.id">
+            <router-link
+              :to="{
+                name: 'Comments',
+                params: { jsonPost: JSON.stringify(post) },
+              }"
+              class="m"
+            >
+              <p>View All <span>#</span> Comments</p>
+
+              <!-- <p>{{ post.last_comment }}</p> -->
+              <div v-if="post.last_comment" class="m">
+                <div class="mb align-items">
+                  <span class="mr">
+                    <img
+                      class="profile-page-pic-small"
+                      :src="post.last_comment.user.photo"
+                      alt=""
+                      tabindex="0"
+                    />
+                  </span>
+                  <span class="b mr"
+                    >{{ post.last_comment.user.first_name }}
+                    {{ post.last_comment.user.last_name }}</span
+                  >
+                  <span>{{ post.last_comment.comment }}</span>
+                </div>
+                <span>
+                  <p>
+                    {{ timeSince(post.last_comment.createdAt) }}
+                  </p>
+                </span>
+              </div>
+            </router-link>
+
+            <!-- <div class="mb" v-for="comment in post.comments" :key="comment.id">
               <router-link :to="{ name: 'Home' }">
                 <span class="b mr">{{ comment.username }}</span>
               </router-link>
               <span>
                 {{ comment.comment }}
               </span>
-            </div>
-            commented -->
+            </div> -->
           </section>
           <p>
             <b>{{ timeSince(post.createdAt) }}</b>
@@ -111,4 +138,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.align-items {
+  display: flex;
+  align-items: center;
+}
+
+.align-right {
+  text-align: right;
+}
+</style>
