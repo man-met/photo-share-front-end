@@ -13,6 +13,7 @@ import MobileFooter from './components/MobileFooter';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed, watch } from '@vue/runtime-core';
+import axios from 'axios';
 
 export default {
   components: { Header, MobileFooter },
@@ -20,11 +21,13 @@ export default {
     const router = useRouter();
     const store = useStore();
 
+    axios.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${store.getters['auth/getToken']}`;
+
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
     });
-
-    console.log(store);
 
     const getPublicPosts = computed(() => {
       return store.getters['post/getPublicPosts'];
