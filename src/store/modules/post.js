@@ -16,6 +16,7 @@ export const state = {
 
 export const mutations = {
   setPublicPosts(state, payload) {
+    console.log(payload);
     for (let i = 0; i < payload.data.length; i++) {
       state.publicPosts.push(payload.data[i]);
     }
@@ -51,13 +52,14 @@ export const actions = {
   async retrieveAllPosts({ commit }) {
     currentPage.value++;
     try {
+      console.log('invoked');
       const response = await axios({
         method: 'GET',
         url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
         withCredentials: true,
       });
       // console.log(response.data.data);
-
+      console.log(response.data);
       if (response.data && response.data.data.length) {
         // console.log('I ran');
         commit('setPublicPosts', response.data);

@@ -8,7 +8,7 @@ export const namespaced = true;
 export const state = {
   user: null,
   // INFO: token is stored in the cookie instead
-  // token: null,
+  token: null,
   error: null,
 };
 
@@ -16,9 +16,10 @@ export const mutations = {
   setUser(state, payload) {
     state.user = payload;
   },
-  // setToken(state, payload) {
-  //   state.token = payload;
-  // },
+  setToken(state, payload) {
+    state.token = payload;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
+  },
   setError(state, payload) {
     state.error = payload;
   },
@@ -35,7 +36,7 @@ export const actions = {
       });
       // console.log(response);
       // INFO: token is sent into the cookie instead
-      // commit('setToken', response.data.token);
+      commit('setToken', response.data.token);
       commit('setUser', response.data.data);
       router.push({ name: 'Home' });
     } catch (err) {
@@ -56,6 +57,7 @@ export const actions = {
         data: payload,
         withCredentials: true,
       });
+      commit('setToken', response.data.token);
       commit('setUser', response.data.data);
       router.push({ name: 'Home' });
       // console.log(response.data.data);
@@ -101,6 +103,9 @@ export const actions = {
 export const getters = {
   getUser(state) {
     return state.user;
+  },
+  getToken(state) {
+    return state.token;
   },
   isUserAuth(state) {
     return !!state.token;
