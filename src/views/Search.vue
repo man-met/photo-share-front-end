@@ -2,7 +2,7 @@
   <input
     type="text"
     placeholder="Search"
-    class="search-bar"
+    class="input-bar"
     v-model="searchKeyword"
   />
 
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style>
-.search-bar {
+.input-bar {
   box-sizing: border-box;
   padding: 10px 20px;
   margin: 10px;

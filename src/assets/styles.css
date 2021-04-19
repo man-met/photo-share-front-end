@@ -90,7 +90,7 @@ main {
   position: relative;
   min-width: 100vw;
   min-height: 100vh;
-  padding: 70px 0 50px 0;
+  padding: 60px 0 50px 0;
   box-sizing: border-box;
 }
 
@@ -187,5 +187,11 @@ main {
   .post-image > img {
     width: 200px;
     /* height: calc(600px / 3); */
+  }
+
+  .comments-box-container {
+    display: fixed;
+    bottom: 0px;
+    top: auto;
   }
 }

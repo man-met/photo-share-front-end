@@ -35,6 +35,7 @@ export default {
     });
 
     const unwatch = watch(posts, () => {
+      console.log(posts.value);
       isLoading.value = false;
     });
 

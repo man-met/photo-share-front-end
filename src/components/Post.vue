@@ -1,6 +1,6 @@
 <template>
   <!-- <p>{{ posts }}</p> -->
-  <div v-if="wait">
+  <div>
     <div class="post-card" v-for="post in posts" :key="post._id">
       <div class="post-header">
         <img class="profile-pic" :src="post.user.photo" alt="" tabindex="0" />
@@ -14,11 +14,16 @@
       <div class="post-footer">
         <section class="action-icons-container">
           <span @click="heartClickTest" class="action-icon"
-            ><ion-icon name="heart-outline" tabindex="0"></ion-icon
+            ><ion-icon name="download-outline"></ion-icon
           ></span>
-          <span @click="commentClickTest" class="action-icon"
+          <router-link
+            :to="{
+              name: 'Comments',
+              params: { jsonPost: JSON.stringify(post) },
+            }"
+            class="action-icon"
             ><ion-icon name="chatbubble-outline" tabindex="0"></ion-icon
-          ></span>
+          ></router-link>
           <span @click="sendClickTest" class="action-icon"
             ><ion-icon name="send-outline" tabindex="0"></ion-icon
           ></span>
@@ -47,21 +52,48 @@
           >
           commented -->
           <section class="m-small">
-            <!-- <router-link :to="{ name: 'Home' }" class="b ib m-small">
-              <p>
-                View All <span>{{ post.comments.length }}</span> Comments
-              </p>
-            </router-link> -->
-            <!-- commented
-            <div class="mb" v-for="comment in post.comments" :key="comment.id">
+            <router-link
+              :to="{
+                name: 'Comments',
+                params: { jsonPost: JSON.stringify(post) },
+              }"
+              class="m"
+            >
+              <p>View All <span>#</span> Comments</p>
+
+              <!-- <p>{{ post.last_comment }}</p> -->
+              <div v-if="post.last_comment" class="m">
+                <div class="mb align-items">
+                  <span class="mr">
+                    <img
+                      class="profile-page-pic-small"
+                      :src="post.last_comment.user.photo"
+                      alt=""
+                      tabindex="0"
+                    />
+                  </span>
+                  <span class="b mr"
+                    >{{ post.last_comment.user.first_name }}
+                    {{ post.last_comment.user.last_name }}</span
+                  >
+                  <span>{{ post.last_comment.comment }}</span>
+                </div>
+                <span>
+                  <p>
+                    {{ timeSince(post.last_comment.createdAt) }}
+                  </p>
+                </span>
+              </div>
+            </router-link>
+
+            <!-- <div class="mb" v-for="comment in post.comments" :key="comment.id">
               <router-link :to="{ name: 'Home' }">
                 <span class="b mr">{{ comment.username }}</span>
               </router-link>
               <span>
                 {{ comment.comment }}
               </span>
-            </div>
-            commented -->
+            </div> -->
           </section>
           <p>
             <b>{{ timeSince(post.createdAt) }}</b>
@@ -73,19 +105,22 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
+// import { ref } from '@vue/reactivity';
 import { timeSince } from '../composables/utils';
 
 export default {
   props: ['posts'],
   setup() {
-    const wait = ref(true);
+    const router = useRouter();
+    // const wait = ref(true);
     const heartClickTest = () => {
       alert('Heart present');
     };
 
-    const commentClickTest = () => {
-      alert('Comment present');
+    const openCommentsView = (post) => {
+      console.log(post);
+      console.log(router);
     };
 
     const sendClickTest = () => {
@@ -94,13 +129,22 @@ export default {
 
     return {
       heartClickTest,
-      commentClickTest,
+      openCommentsView,
       sendClickTest,
       timeSince,
-      wait,
+      // wait,
     };
   },
 };
 </script>
 
-<style></style>
+<style>
+.align-items {
+  display: flex;
+  align-items: center;
+}
+
+.align-right {
+  text-align: right;
+}
+</style>

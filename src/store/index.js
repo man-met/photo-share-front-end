@@ -4,6 +4,7 @@ import * as auth from './modules/auth';
 import * as user from './modules/user';
 import * as externalUser from './modules/externalUser';
 import * as post from './modules/post';
+import * as comment from './modules/comment';
 
 export default createStore({
   state: {},
@@ -15,5 +16,6 @@ export default createStore({
     post,
     user,
     externalUser,
+    comment,
   },
 });
