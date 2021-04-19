@@ -12,7 +12,8 @@ import Header from './components/Header';
 import MobileFooter from './components/MobileFooter';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed, watch } from '@vue/runtime-core';
+import { computed } from '@vue/runtime-core';
+import axios from 'axios';
 
 export default {
   components: { Header, MobileFooter },
@@ -20,39 +21,50 @@ export default {
     const router = useRouter();
     const store = useStore();
 
+    if (process.env.VUE_APP_NODE_ENV === 'development') {
+      console.log('🔐 TOKEN: ', store.getters['auth/getToken']);
+    }
+
+    if (store.getters['auth/getToken']) {
+      if (process.env.VUE_APP_NODE_ENV === 'development') {
+        console.log('Token set to Axios: ✅');
+      }
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${store.getters['auth/getToken']}`;
+    }
+
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
     });
 
-    console.log(store);
+    // const getPublicPosts = computed(() => {
+    //   return store.getters['post/getPublicPosts'];
+    // });
 
-    const getPublicPosts = computed(() => {
-      return store.getters['post/getPublicPosts'];
-    });
+    // const getLoggedInUsersPosts = computed(() => {
+    //   return store.getters['user/getLoggedInUsersPosts'];
+    // });
 
-    const getLoggedInUsersPosts = computed(() => {
-      return store.getters['user/getLoggedInUsersPosts'];
-    });
+    // if (getUser.value) {
+    //   if (getPublicPosts.value.length === 0) {
+    //     store.dispatch('post/retrieveAllPosts', getUser.value);
+    //     watch([getUser.value, getPublicPosts.value], () => {
+    //       if (getUser.value && getPublicPosts.value.length === 0) {
+    //         console.log('invoked');
+    //         store.dispatch('post/retrieveAllPosts', getUser.value);
+    //       }
+    //     });
+    //   }
 
-    if (getUser.value) {
-      if (getPublicPosts.value.length === 0) {
-        store.dispatch('post/retrieveAllPosts', getUser.value);
-        watch([getUser.value, getPublicPosts.value], () => {
-          if (getUser.value && getPublicPosts.value.length === 0) {
-            console.log('invoked');
-            store.dispatch('post/retrieveAllPosts', getUser.value);
-          }
-        });
-      }
-
-      if (getLoggedInUsersPosts.value.length === 0) {
-        store.dispatch('user/getLoggedInUsersPosts', getUser.value);
-        watch([getUser.value, getLoggedInUsersPosts.value], () => {
-          console.log('YOU HAVE WORK TO DO HERE');
-          // console.clear();
-        });
-      }
-    }
+    //   if (getLoggedInUsersPosts.value.length === 0) {
+    //     store.dispatch('user/getLoggedInUsersPosts', getUser.value);
+    //     watch([getUser.value, getLoggedInUsersPosts.value], () => {
+    //       console.log('YOU HAVE WORK TO DO HERE');
+    //       // console.clear();
+    //     });
+    //   }
+    // }
 
     return {
       router,

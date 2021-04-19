@@ -57,7 +57,6 @@ export const actions = {
         withCredentials: true,
       });
       // console.log(response.data.data);
-
       if (response.data && response.data.data.length) {
         // console.log('I ran');
         commit('setPublicPosts', response.data);
