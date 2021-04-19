@@ -21,12 +21,18 @@ export default {
   setup() {
     const store = useStore();
     const isLoading = ref(false);
-    // console.log(isLoading.value);
-    // const isInitialRequestLoading = ref(true);
 
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
     });
+
+    if (store.getters['post/getPublicPosts'].length === 0) {
+      console.log(process.env.NODE_ENV);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('First request made at Home: ✅');
+      }
+      store.dispatch('post/retrieveAllPosts', getUser.value);
+    }
 
     const posts = computed(() => {
       return orderBy(store.getters['post/getPublicPosts'], (a) => a.createdAt, [
@@ -35,7 +41,6 @@ export default {
     });
 
     const unwatch = watch(posts, () => {
-      console.log(posts.value);
       isLoading.value = false;
     });
 

@@ -61,6 +61,14 @@ export default {
       return store.getters['auth/getUser'];
     });
 
+    if (store.getters['user/getLoggedInUsersPosts'].length === 0) {
+      console.log(process.env.NODE_ENV);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('First request made at PROFILE: ✅');
+      }
+      store.dispatch('user/getLoggedInUsersPosts', getUser.value);
+    }
+
     const posts = computed(() => {
       return store.getters['user/getLoggedInUsersPosts'];
     });
