@@ -35,8 +35,13 @@
       </div>
     </div>
     <div class="post-images-container" v-if="externalUserPosts">
-      <div class="post-image" v-for="post in externalUserPosts" :key="post._id">
-        <img class="" :src="post.postImage" alt="an image" tabindex="0" />
+      <div v-for="post in externalUserPosts" :key="post._id">
+        <router-link
+          :to="{ name: 'SinglePost', params: { postId: post._id } }"
+          class="post-image"
+        >
+          <img class="" :src="post.postImage" alt="an image" tabindex="0" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -49,6 +54,7 @@
 import { useStore } from 'vuex';
 import {
   computed,
+  onBeforeUnmount,
   onMounted,
   onUnmounted,
   ref,
@@ -61,6 +67,7 @@ export default {
     const store = useStore();
     const isLoading = ref(false);
 
+    store.commit('externalUser/deleteExternalUserData');
     store.dispatch('externalUser/getExternalUserProfile', props.userId);
     store.dispatch('externalUser/getExternalUserPosts', props.userId);
 
@@ -101,9 +108,12 @@ export default {
       window.addEventListener('scroll', handleScroll);
     });
 
+    onBeforeUnmount(() => {
+      store.commit('utilsStore/setTrackRoute', 'ProfileExternalUser');
+    });
+
     onUnmounted(() => {
       unwatch();
-      store.commit('externalUser/deleteExternalUserData');
       // it is important to remove the event listener to avoid memory leaks
       window.removeEventListener('scroll', handleScroll);
     });
