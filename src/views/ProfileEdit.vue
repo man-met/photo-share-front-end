@@ -70,8 +70,6 @@ export default {
     const newProfilePhoto = ref(null);
     const isActive = ref(false);
 
-    // console.log(submit);
-
     const onInputFileChange = (event) => {
       newProfilePhoto.value = event.target.files[0];
       photo.value = URL.createObjectURL(newProfilePhoto.value);
@@ -80,7 +78,6 @@ export default {
     console.log(store);
 
     const submitData = async () => {
-      // console.log('Ready to rock!');
       isActive.value = true;
       const form = new FormData();
       form.append('first_name', firstName.value);
@@ -121,7 +118,6 @@ export default {
   width: 150px;
   height: 150px;
   clip-path: circle(75px at center);
-  /* z-index: -1; */
   margin-bottom: 15px;
 }
 

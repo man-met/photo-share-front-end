@@ -7,7 +7,6 @@
   />
 
   <div class="users-profiles-container" v-if="queryResult">
-    <!-- <p>{{ queryResult }}</p> -->
     <div v-for="item in queryResult" :key="item._id">
       <router-link
         :to="{ name: 'ProfileExternalUser', params: { userId: item._id } }"
@@ -17,7 +16,6 @@
           <img :src="item.photo" class="profile-page-pic" />
         </div>
       </router-link>
-      <!-- <img src="profile-pic" /> -->
     </div>
   </div>
 </template>
@@ -36,12 +34,7 @@ export default {
       return store.getters['user/getUserProfiles'];
     });
 
-    // watch(queryResult, () => {
-    //   console.log(queryResult.value);
-    // });
-
     const unwatch = watch(searchKeyword, () => {
-      // console.log(searchKeyword.value);
       if (searchKeyword.value.length) {
         store.dispatch('user/getUserProfiles', searchKeyword.value);
       } else {

@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-// INFO: * imports all public items into user namespace
 import * as auth from './modules/auth';
 import * as user from './modules/user';
 import * as externalUser from './modules/externalUser';

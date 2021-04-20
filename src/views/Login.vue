@@ -17,6 +17,8 @@
         required
       />
 
+      <p class="error">{{ error }}</p>
+
       <div class="flex-space-between-items">
         <router-link :to="{ name: 'Signup' }">Signup instead</router-link>
         <button class="primary" ref="signupButton">Login</button>
@@ -28,15 +30,19 @@
 <script>
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
+import { computed, onBeforeMount } from '@vue/runtime-core';
 
 export default {
   setup() {
-    const email = ref('');
-    const password = ref('');
+    const email = ref('me@gmail.com');
+    const password = ref('test123');
     const store = useStore();
 
+    const error = computed(() => {
+      return store.getters['auth/getError'];
+    });
+
     const loginAction = async () => {
-      // console.log('I am triggered');
       const user = {
         email: email.value,
         password: password.value,
@@ -45,10 +51,15 @@ export default {
       await store.dispatch('auth/loginAction', user);
     };
 
+    onBeforeMount(() => {
+      store.commit('auth/setError', null);
+    });
+
     return {
       email,
       password,
       loginAction,
+      error,
     };
   },
 };

@@ -2,7 +2,9 @@
   <div class="container">
     <!-- <h1>{{ getUser.user.email }}</h1> -->
     <Post :posts="posts" v-if="posts.length" />
-    <div v-else>No data to display!</div>
+    <div v-else class="error">
+      Oops... Something went wrong! Try again later.
+    </div>
     <h1 v-if="allPostsRetrieved">No more posts!</h1>
     <p v-if="isLoading">Loading...</p>
   </div>
