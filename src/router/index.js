@@ -7,6 +7,7 @@ import Gallery from '../views/Gallery.vue';
 import Profile from '../views/Profile.vue';
 import ProfileExternalUser from '../views/ProfileExternalUser.vue';
 import ProfileEdit from '../views/ProfileEdit.vue';
+import SinglePost from '../views/SinglePost.vue';
 import Settings from '../views/Settings.vue';
 import Signup from '../views/Signup.vue';
 import Login from '../views/Login.vue';
@@ -32,6 +33,13 @@ const isUserLoggedout = (to, from, next) => {
     next({ name: 'Home' });
   }
 };
+
+// const getPreviousRoute = (to, from, next) => {
+//   // console.log(store);
+//   // store.commit('utilsStore/setTrackRoute', from.name);
+//   router.prevRoute = from;
+//   next();
+// };
 
 const routes = [
   {
@@ -72,10 +80,17 @@ const routes = [
     beforeEnter: isUserLoggedin,
   },
   {
+    path: '/post/:postId',
+    name: 'SinglePost',
+    component: SinglePost,
+    beforeEnter: [isUserLoggedin],
+    props: true,
+  },
+  {
     path: '/user/:userId',
     name: 'ProfileExternalUser',
     component: ProfileExternalUser,
-    beforeEnter: isUserLoggedin,
+    beforeEnter: [isUserLoggedin],
     props: true,
   },
   {
