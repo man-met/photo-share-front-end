@@ -61,18 +61,14 @@ export const actions = {
       const response = await axios({
         method: 'GET',
         url: `${url}api/v1/posts/get-posts?user=${user._id}&limit=12&page=${currentPage.value}`,
-        // url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
         withCredentials: true,
       });
-      // console.log(response.data.data.length);
       if (response.data.data.length) {
-        // console.log('I ran');
         commit('setUserPosts', response.data);
       } else {
         console.log('Last Data Retrieved!');
         commit('setAllPostsRetrieved');
       }
-      // router.push({ name: 'Profile' });
     } catch (err) {
       console.log(err);
       return commit('setError', err.message);
@@ -84,8 +80,6 @@ export const actions = {
       const response = await axios({
         method: 'GET',
         url: `${url}api/v1/users?searchKeyword=${payload}`,
-        // It is a get request, you cannot have a body
-        // data: payload,
         withCredentials: true,
       });
 
@@ -104,7 +98,6 @@ export const actions = {
         data: payload,
         withCredentials: true,
       });
-      // console.log(response);
 
       await commit('auth/setUser', response.data, { root: true });
       router.push({ name: 'Profile' });

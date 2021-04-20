@@ -7,7 +7,6 @@ export const namespaced = true;
 
 export const state = {
   user: null,
-  // INFO: token is stored in the cookie instead
   token: null,
   error: null,
 };
@@ -34,22 +33,20 @@ export const actions = {
         data: payload.newUser,
         withCredentials: true,
       });
-      // console.log(response);
-      // INFO: token is sent into the cookie instead
+
       commit('setToken', response.data.token);
       commit('setUser', response.data.data);
       router.push({ name: 'Home' });
     } catch (err) {
-      console.log(err);
-      return commit('setError', err.message);
+      let { message } = err;
+      if (message.includes('409')) {
+        message = 'An account already exists with that email.';
+      }
+      return commit('setError', message);
     }
-    // TODO: Instead of routing to the Home page from vuex, route it from here.
   },
 
   async loginAction({ commit }, payload) {
-    // console.log(commit);
-    // console.log(payload);
-
     try {
       const response = await axios({
         method: 'POST',
@@ -60,10 +57,8 @@ export const actions = {
       commit('setToken', response.data.token);
       commit('setUser', response.data.data);
       router.push({ name: 'Home' });
-      // console.log(response.data.data);
     } catch (err) {
-      console.log(err);
-      return commit('setError', err.message);
+      return commit('setError', 'Username or Password is incorrect!');
     }
   },
 
@@ -74,8 +69,8 @@ export const actions = {
         url: `${url}api/v1/users/logout`,
         withCredentials: true,
       });
-      // console.log(response);
       commit('setUser', null);
+      commit('setToken', null);
       router.push({ name: 'Login' });
     } catch (err) {
       console.log(err);
@@ -94,7 +89,6 @@ export const actions = {
         commit('setUser', response.data.data);
       }
     } catch (err) {
-      console.log(err.message);
       return commit('setError', err.message);
     }
   },
@@ -114,8 +108,3 @@ export const getters = {
     return state.error;
   },
 };
-
-// const getUserDetails = async (email, password) => {
-//   console.log(email);
-//   console.log(password);
-// };

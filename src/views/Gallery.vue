@@ -1,6 +1,4 @@
 <template>
-  <!-- <button @click="accessGallery">Access Gallery</button> -->
-  <!-- <input class="custom-file-input" type="file" /> -->
   <div v-if="postImage" class="post-content">
     <img id="post-image" :src="postImageURL" :alt="caption" />
     <button class="remove-image-btn" @click="removeImage">Remove Image</button>
@@ -57,10 +55,8 @@ export default {
       const form = new FormData();
       form.append('postImage', postImage.value);
       form.append('caption', caption.value);
-      // // console.log(store);
 
       await store.dispatch('post/createPostAction', form);
-      // console.log('upload image triggered');
     };
 
     return {

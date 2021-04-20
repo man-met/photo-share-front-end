@@ -20,9 +20,6 @@
       </div>
       <div class="post-footer">
         <section class="action-icons-container">
-          <span @click="heartClickTest" class="action-icon"
-            ><ion-icon name="heart-outline"></ion-icon
-          ></span>
           <router-link
             :to="{
               name: 'Comments',
@@ -49,17 +46,6 @@
             ></router-link
           >
           <span class="ml">{{ post.caption }}</span>
-          <!-- commented
-          <br />
-          <br />
-          <router-link
-            :to="{ name: 'Home' }"
-            class="mr ib"
-            v-for="(tag, index) in post.tags"
-            :key="index"
-            >#{{ tag }}</router-link
-          >
-          commented -->
           <section class="m-small">
             <router-link
               :to="{
@@ -70,7 +56,6 @@
             >
               <p>View All <span>#</span> Comments</p>
 
-              <!-- <p>{{ post.last_comment }}</p> -->
               <div v-if="post.last_comment" class="m">
                 <div class="mb align-items">
                   <span class="mr">
@@ -94,15 +79,6 @@
                 </span>
               </div>
             </router-link>
-
-            <!-- <div class="mb" v-for="comment in post.comments" :key="comment.id">
-              <router-link :to="{ name: 'Home' }">
-                <span class="b mr">{{ comment.username }}</span>
-              </router-link>
-              <span>
-                {{ comment.comment }}
-              </span>
-            </div> -->
           </section>
           <p>
             <b>{{ timeSince(post.createdAt) }}</b>
@@ -142,8 +118,6 @@ export default {
       getPostsFrom = 'externalUser/getExternalUserPosts';
       dispatchFrom = 'externalUser/getExternalUserPosts';
     }
-
-    // console.log(getPostsFrom, dispatchFrom, getUserFrom);
 
     const getUser = computed(() => {
       return store.getters[getUserFrom];

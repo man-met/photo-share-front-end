@@ -40,7 +40,6 @@
 </template>
 
 <script>
-// import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
 import {
   computed,
@@ -51,7 +50,6 @@ import {
   watch,
 } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
-// import { computed } from '@vue/runtime-core';
 
 export default {
   setup() {
@@ -81,7 +79,6 @@ export default {
 
     const allPostsRetrieved = computed(() => {
       return store.getters['user/getAllPostsRetrievedValue'];
-      // return false;
     });
 
     const followers = computed(() => {
