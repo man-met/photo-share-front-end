@@ -83,7 +83,4 @@ export const getters = {
   getAllPostsRetrievedValue(state) {
     return state.allPostsRetrieved;
   },
-  // getError(state) {
-  //   return state.error;
-  // },
 };

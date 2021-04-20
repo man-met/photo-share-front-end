@@ -20,9 +20,6 @@
       </div>
       <div class="post-footer">
         <section class="action-icons-container">
-          <span @click="heartClickTest" class="action-icon"
-            ><ion-icon name="heart-outline"></ion-icon
-          ></span>
           <router-link
             :to="{
               name: 'Comments',

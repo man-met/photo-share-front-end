@@ -12,9 +12,6 @@
       </div>
       <div class="post-footer">
         <section class="action-icons-container">
-          <span @click="heartClickTest" class="action-icon"
-            ><ion-icon name="heart-outline"></ion-icon
-          ></span>
           <router-link
             :to="{
               name: 'Comments',
@@ -85,30 +82,12 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
 import { timeSince } from '../composables/utils';
 
 export default {
   props: ['posts'],
   setup() {
-    const router = useRouter();
-    const heartClickTest = () => {
-      alert('Heart present');
-    };
-
-    const openCommentsView = (post) => {
-      console.log(post);
-      console.log(router);
-    };
-
-    const sendClickTest = () => {
-      alert('Send present');
-    };
-
     return {
-      heartClickTest,
-      openCommentsView,
-      sendClickTest,
       timeSince,
     };
   },
