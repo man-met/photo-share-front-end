@@ -14,7 +14,7 @@
       <div class="post-footer">
         <section class="action-icons-container">
           <span @click="heartClickTest" class="action-icon"
-            ><ion-icon name="download-outline"></ion-icon
+            ><ion-icon name="heart-outline"></ion-icon
           ></span>
           <router-link
             :to="{
@@ -24,9 +24,11 @@
             class="action-icon"
             ><ion-icon name="chatbubble-outline" tabindex="0"></ion-icon
           ></router-link>
-          <span @click="sendClickTest" class="action-icon"
-            ><ion-icon name="send-outline" tabindex="0"></ion-icon
-          ></span>
+          <a :href="post.postImage" download>
+            <span class="action-icon"
+              ><ion-icon name="download-outline" tabindex="0"></ion-icon
+            ></span>
+          </a>
         </section>
         <section class="mb-sm">
           <router-link :to="{ name: 'Home' }" class="b"
