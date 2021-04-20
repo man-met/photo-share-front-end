@@ -38,6 +38,8 @@
         required
       />
 
+      <p class="error">{{ error }}</p>
+
       <div class="flex-space-between-items">
         <router-link :to="{ name: 'Login' }">Log in instead</router-link>
         <button class="primary" ref="signupButton">Signup</button>
@@ -49,7 +51,7 @@
 <script>
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
-// import { useRouter } from 'vue-router';
+import { computed, onBeforeMount } from '@vue/runtime-core';
 
 export default {
   setup() {
@@ -60,12 +62,12 @@ export default {
     const passwordConfirm = ref('');
     const signupButton = ref(null);
     const store = useStore();
-    // const router = useRouter();
 
-    // console.log(store);
+    const error = computed(() => {
+      return store.getters['auth/getError'];
+    });
 
     const signupAction = async () => {
-      // TODO: Instead of routing to the Home page from vuex, route it from here.
       if (password.value === passwordConfirm.value) {
         let newUser = {
           first_name: firstName.value,
@@ -76,11 +78,13 @@ export default {
         };
         await store.dispatch('auth/signupAction', { newUser });
       } else {
-        // TODO: Pass the vuex user Error so it can be displayed in the page.
-        console.log('Passwords do not match!!');
+        store.commit('auth/setError', 'Passwords do not match');
       }
-      // console.log(store);
     };
+
+    onBeforeMount(() => {
+      store.commit('auth/setError', null);
+    });
 
     return {
       signupAction,
@@ -90,6 +94,7 @@ export default {
       password,
       passwordConfirm,
       signupButton,
+      error,
     };
   },
 };
@@ -97,7 +102,6 @@ export default {
 
 <style>
 #signup-container {
-  /* border: 1px solid red; */
   position: absolute;
   top: 0;
   left: 0;
@@ -108,11 +112,9 @@ export default {
   align-items: center;
   align-content: center;
   padding: 0 5%;
-  /* z-index: -1; */
 }
 
 .form-group {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,7 +140,6 @@ export default {
   outline: none;
   border: 3px solid rgba(223, 223, 223, 0);
   box-sizing: border-box;
-  /* outline: none; */
 }
 
 .form-group > input:focus {
@@ -162,7 +163,6 @@ export default {
 }
 
 .flex-space-between-items {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;

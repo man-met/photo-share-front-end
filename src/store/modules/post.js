@@ -43,8 +43,10 @@ export const actions = {
       commit('setPublicPosts', response.data);
       router.push({ name: 'Profile' });
     } catch (err) {
-      console.log(err);
-      return commit('setError', err.message);
+      return commit(
+        'setError',
+        'Oops... Something went wrong, try again later...'
+      );
     }
   },
 

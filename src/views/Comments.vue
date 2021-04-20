@@ -42,6 +42,7 @@
         </span>
       </div>
     </div>
+    <p v-else class="error">Oops... Something went wrong! Try again later.</p>
     <div class="comments-box-container">
       <input
         type="text"

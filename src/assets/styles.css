@@ -53,6 +53,13 @@ a {
   display: inline-block;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: center;
+}
+
 /* buttons styles */
 
 .primary,
