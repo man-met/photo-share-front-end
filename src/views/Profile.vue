@@ -7,10 +7,6 @@
       tabindex="0"
     />
     <div class="profile-stats">
-      <p>#</p>
-      <p>Posts</p>
-    </div>
-    <div class="profile-stats">
       <p>{{ followers.length }}</p>
       <p>Followers</p>
     </div>
@@ -32,8 +28,13 @@
     </div>
   </div>
   <div class="post-images-container" v-if="posts">
-    <div class="post-image" v-for="post in posts" :key="post._id">
-      <img class="" :src="post.postImage" alt="an image" tabindex="0" />
+    <div v-for="post in posts" :key="post._id">
+      <router-link
+        :to="{ name: 'SinglePost', params: { postId: post._id } }"
+        class="post-image"
+      >
+        <img class="" :src="post.postImage" alt="an image" tabindex="0" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -43,17 +44,22 @@
 import { useStore } from 'vuex';
 import {
   computed,
+  onBeforeUnmount,
   onMounted,
   onUnmounted,
   ref,
   watch,
 } from '@vue/runtime-core';
+import { useRouter } from 'vue-router';
 // import { computed } from '@vue/runtime-core';
 
 export default {
   setup() {
     const store = useStore();
     const isLoading = ref(false);
+    const router = useRouter();
+
+    console.log(router);
 
     store.dispatch('user/getFollowersData');
 
@@ -105,6 +111,10 @@ export default {
 
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);
+    });
+
+    onBeforeUnmount(() => {
+      store.commit('utilsStore/setTrackRoute', 'Profile');
     });
 
     onUnmounted(() => {
