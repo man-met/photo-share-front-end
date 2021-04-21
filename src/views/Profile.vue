@@ -49,15 +49,11 @@ import {
   ref,
   watch,
 } from '@vue/runtime-core';
-import { useRouter } from 'vue-router';
 
 export default {
   setup() {
     const store = useStore();
     const isLoading = ref(false);
-    const router = useRouter();
-
-    console.log(router);
 
     store.dispatch('user/getFollowersData');
 
@@ -66,7 +62,6 @@ export default {
     });
 
     if (store.getters['user/getLoggedInUsersPosts'].length === 0) {
-      console.log(process.env.NODE_ENV);
       if (process.env.NODE_ENV === 'development') {
         console.log('First request made at PROFILE: ✅');
       }

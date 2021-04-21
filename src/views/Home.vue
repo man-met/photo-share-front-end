@@ -27,7 +27,6 @@ export default {
     });
 
     if (store.getters['post/getPublicPosts'].length === 0) {
-      console.log(process.env.NODE_ENV);
       if (process.env.NODE_ENV === 'development') {
         console.log('First request made at Home: ✅');
       }
@@ -50,7 +49,6 @@ export default {
 
     const handleScroll = () => {
       if (allPostsRetrieved.value) {
-        // console.log('Beta');
         isLoading.value = false;
         window.removeEventListener('scroll', handleScroll);
       } else if (
@@ -72,7 +70,6 @@ export default {
       window.removeEventListener('scroll', handleScroll);
     });
 
-    // console.log(posts.value);
     return {
       posts,
       getUser,

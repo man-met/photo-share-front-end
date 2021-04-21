@@ -47,7 +47,6 @@ export const actions = {
       });
       commit('setExternalUserDetails', response.data.data);
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },
@@ -65,11 +64,9 @@ export const actions = {
       if (response.data.data.length) {
         commit('setExternalUserPosts', response.data);
       } else {
-        console.log('Last Data Retrieved!');
         commit('setAreAllPostsRetrieved');
       }
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },

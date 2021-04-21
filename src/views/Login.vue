@@ -34,8 +34,8 @@ import { computed, onBeforeMount } from '@vue/runtime-core';
 
 export default {
   setup() {
-    const email = ref('me@gmail.com');
-    const password = ref('test123');
+    const email = ref('');
+    const password = ref('');
     const store = useStore();
 
     const error = computed(() => {
@@ -47,7 +47,6 @@ export default {
         email: email.value,
         password: password.value,
       };
-      // console.log(store);
       await store.dispatch('auth/loginAction', user);
     };
 
