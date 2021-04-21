@@ -8,7 +8,6 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 // CACHING STRATEGIES - WORKBOX STRATEGIES
-
 workbox.routing.registerRoute(
   ({ url }) => url.host === 'unpkg.com',
   new workbox.strategies.CacheFirst({
@@ -23,6 +22,7 @@ workbox.routing.registerRoute(
   })
 );
 
+// CACHING STRATEGIES
 workbox.routing.registerRoute(
   new RegExp('http'),
   new workbox.strategies.StaleWhileRevalidate({
