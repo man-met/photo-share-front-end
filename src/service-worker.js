@@ -1,12 +1,4 @@
 console.log(workbox);
-// DEPENDENCIES
-
-// const { Router } = require("express");
-
-// import { registerRoute } from 'workbox-routing';
-// import { StaleWhileRevalidate } from 'workbox-strategies';
-
-// import { Queue } from 'workbox-background-sync';
 
 // PRECACHING
 
@@ -14,14 +6,19 @@ console.log(workbox);
 workbox.core.setCacheNameDetails({ prefix: 'quickchat-cache' });
 
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
+
+workbox.setConfig({
+  debug: true,
+});
+
 // eslint-disable-next-line no-undef
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-// CACHING STRATEGIES
+// CACHING STRATEGIES - WORKBOX STRATEGIES
 
-// stalewhilerevalidate
-
-// console.log(workbox.strategies);
+// workbox.routing.registerRoute(
+//   {url}.includes
+// )
 
 workbox.routing.registerRoute(
   new RegExp('http'),
@@ -38,18 +35,3 @@ workbox.routing.registerRoute(
 );
 
 // // BACKGROUND SYNC
-
-// // create posts
-
-// // const createPostQueue = new Queue('create-post-queue');
-
-// // self.addEventListener('fetch', (event) => {
-// //   // Clone the request to ensure it's safe to read when
-// //   // adding to the Queue.
-// //   const promiseChain = fetch(event.request.clone()).catch((err) => {
-// //     console.log(err);
-// //     return createPostQueue.pushRequest({ request: event.request });
-// //   });
-
-// //   event.waitUntil(promiseChain);
-// // });
