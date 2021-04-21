@@ -73,7 +73,6 @@ export const actions = {
       commit('setToken', null);
       router.push({ name: 'Login' });
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },

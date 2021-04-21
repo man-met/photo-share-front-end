@@ -111,8 +111,6 @@ export default {
     let getPostsFrom = 'user/getLoggedInUsersPosts';
     let dispatchFrom = 'user/getLoggedInUsersPosts';
 
-    console.log(store.getters['utilsStore/getTrackRoute']);
-
     if (store.getters['utilsStore/getTrackRoute'] === 'ProfileExternalUser') {
       getUserFrom = 'externalUser/getExternalUserDetails';
       getPostsFrom = 'externalUser/getExternalUserPosts';

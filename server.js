@@ -7,8 +7,6 @@ const app = express();
 
 dotenv.config({ path: './config.env' });
 
-console.log(process.env);
-
 //here we are configuring dist to serve app files
 app.use('/', serveStatic(path.join(__dirname, '/dist')));
 
