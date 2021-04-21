@@ -20,8 +20,6 @@ export default {
     const router = useRouter();
     const store = useStore();
 
-    console.log(store);
-
     if (process.env.VUE_APP_NODE_ENV === 'development') {
       console.log('🔐 TOKEN: ', store.getters['auth/getToken']);
     }

@@ -66,11 +66,9 @@ export const actions = {
       if (response.data.data.length) {
         commit('setUserPosts', response.data);
       } else {
-        console.log('Last Data Retrieved!');
         commit('setAllPostsRetrieved');
       }
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },
@@ -85,7 +83,6 @@ export const actions = {
 
       commit('setUserProfiles', response.data);
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },
@@ -102,7 +99,6 @@ export const actions = {
       await commit('auth/setUser', response.data, { root: true });
       router.push({ name: 'Profile' });
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },
@@ -118,7 +114,6 @@ export const actions = {
       commit('setFollowers', response.data.data.followers);
       commit('setFollowings', response.data.data.followings);
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },
@@ -138,7 +133,6 @@ export const actions = {
         dispatch('getFollowersData');
       }
     } catch (err) {
-      console.log(err);
       return commit('setError', err.message);
     }
   },

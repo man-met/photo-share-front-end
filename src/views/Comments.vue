@@ -63,7 +63,7 @@
 import { ref } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed, watch } from '@vue/runtime-core';
+import { computed } from '@vue/runtime-core';
 import { timeSince } from '../composables/utils';
 
 export default {
@@ -76,10 +76,6 @@ export default {
 
     const allComments = computed(() => {
       return store.getters['comment/getComments'];
-    });
-
-    watch(allComments, () => {
-      console.log(allComments.value);
     });
 
     store.dispatch('comment/getCommentsAction', post.value._id);

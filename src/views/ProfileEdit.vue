@@ -75,8 +75,6 @@ export default {
       photo.value = URL.createObjectURL(newProfilePhoto.value);
     };
 
-    console.log(store);
-
     const submitData = async () => {
       isActive.value = true;
       const form = new FormData();
