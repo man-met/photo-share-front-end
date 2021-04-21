@@ -1,4 +1,5 @@
 console.log(workbox);
+console.log(workbox.backgroundSync);
 
 // PRECACHING
 
