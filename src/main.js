@@ -7,7 +7,7 @@ import store from './store';
 
 if (
   process.env.NODE_ENV === 'production' &&
-  !window.location.href.startsWith('http')
+  !window.location.href.startsWith('https')
 ) {
   window.location.replace('https://manmetquickchat.herokuapp.com');
 }
