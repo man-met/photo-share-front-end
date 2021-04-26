@@ -34,11 +34,6 @@
             ></span>
           </a>
         </section>
-        <section class="mb-sm">
-          <router-link :to="{ name: 'Home' }" class="b"
-            ><span>{{ post.likesQuantity }}</span> likes
-          </router-link>
-        </section>
         <div class="caption-container m-sm">
           <router-link :to="{ name: 'Home' }"
             ><span class="b"
@@ -54,7 +49,7 @@
               }"
               class="m"
             >
-              <p>View All <span>#</span> Comments</p>
+              <p>View All Comments</p>
 
               <div v-if="post.last_comment" class="m">
                 <div class="mb align-items">
