@@ -16,29 +16,48 @@
       Share
     </button>
   </div>
-  <div v-if="!postImage" class="file-input">
-    <input
-      type="file"
-      id="file"
-      class="file"
-      accept="image/*"
-      @change="onInputFileChange($event)"
-    />
-    <label for="file">Select image</label>
+  <div v-if="!postImage" class="file-input-wrapper">
+    <div class="file-input">
+      <h3 class="mb-med">Upload an Image:</h3>
+      <input
+        type="file"
+        id="file"
+        class="file"
+        accept="image/*"
+        @change="onInputFileChange($event)"
+      />
+      <label for="file">Select image</label>
+    </div>
+  </div>
+  <div class="spinner-wrapper" v-if="loading">
+    <Spinner />
   </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
+import Spinner from '../components/Spinner';
+import { computed, watch } from '@vue/runtime-core';
 
 export default {
+  components: { Spinner },
   setup() {
     const postImage = ref(null);
     const postImageURL = ref('');
     const caption = ref('');
     const store = useStore();
     const isActive = ref(false);
+
+    const loading = ref(false);
+
+    const processingRequest = computed(() => {
+      return store.getters['getProcessingRequestValue'];
+    });
+
+    watch(processingRequest, () => {
+      loading.value = !loading.value;
+    });
 
     const onInputFileChange = (event) => {
       postImage.value = event.target.files[0];
@@ -66,6 +85,7 @@ export default {
       onInputFileChange,
       removeImage,
       uploadImage,
+      loading,
       isActive,
     };
   },
@@ -78,6 +98,17 @@ export default {
   width: 0.1px;
   height: 0.1px;
   position: absolute;
+}
+
+.file-input-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .file-input label {

@@ -37,6 +37,7 @@
       </router-link>
     </div>
   </div>
+  <Spinner v-if="loading" />
 </template>
 
 <script>
@@ -49,11 +50,23 @@ import {
   ref,
   watch,
 } from '@vue/runtime-core';
+import Spinner from '../components/Spinner';
 
 export default {
+  components: { Spinner },
   setup() {
     const store = useStore();
     const isLoading = ref(false);
+
+    const loading = ref(false);
+
+    const processingRequest = computed(() => {
+      return store.getters['getProcessingRequestValue'];
+    });
+
+    watch(processingRequest, () => {
+      loading.value = !loading.value;
+    });
 
     store.dispatch('user/getFollowersData');
 
@@ -120,6 +133,7 @@ export default {
       posts,
       followers,
       followings,
+      loading,
     };
   },
 };

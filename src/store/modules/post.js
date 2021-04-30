@@ -31,6 +31,7 @@ export const mutations = {
 export const actions = {
   async createPostAction({ commit }, payload) {
     try {
+      commit('setProcessingRequest', null, { root: true });
       const response = await axios({
         method: 'POST',
         url: `${url}api/v1/posts/create-post`,
@@ -39,8 +40,10 @@ export const actions = {
       });
 
       commit('setPublicPosts', response.data);
+      await commit('setProcessingRequest', null, { root: true });
       router.push({ name: 'Profile' });
     } catch (err) {
+      await commit('setProcessingRequest', null, { root: true });
       return commit(
         'setError',
         'Oops... Something went wrong, try again later...'
@@ -51,6 +54,7 @@ export const actions = {
   async retrieveAllPosts({ commit }) {
     currentPage.value++;
     try {
+      commit('setProcessingRequest', null, { root: true });
       const response = await axios({
         method: 'GET',
         url: `${url}api/v1/posts/get-posts?limit=${limit}&page=${currentPage.value}`,
@@ -61,7 +65,9 @@ export const actions = {
       } else {
         commit('setAllPostsRetrieved');
       }
+      await commit('setProcessingRequest', null, { root: true });
     } catch (err) {
+      await commit('setProcessingRequest', null, { root: true });
       return commit('setError', err.message);
     }
   },

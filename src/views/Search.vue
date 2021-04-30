@@ -1,7 +1,7 @@
 <template>
   <input
     type="text"
-    placeholder="Search"
+    placeholder="Search for Accounts..."
     class="input-bar"
     v-model="searchKeyword"
   />
