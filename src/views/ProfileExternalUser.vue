@@ -26,7 +26,10 @@
       <p>{{ externalUser.user.bio }}</p>
     </div>
     <div class="profile-buttons-container">
-      <div class="profile-buttons">
+      <div v-if="isFollowed" class="profile-buttons">
+        <button class="disabled">Following</button>
+      </div>
+      <div v-else class="profile-buttons">
         <button class="primary" @click="startFollowing">Follow</button>
       </div>
     </div>
@@ -62,7 +65,7 @@ export default {
   setup(props) {
     const store = useStore();
     const isLoading = ref(false);
-
+    const isFollowed = ref(null);
     const loading = ref(false);
 
     const processingRequest = computed(() => {
@@ -72,6 +75,23 @@ export default {
     watch(processingRequest, () => {
       loading.value = !loading.value;
     });
+
+    const usersFollowed = computed(() => {
+      // console.log(store.getters['user/getFollowers']);
+      return store.getters['user/getFollowings'];
+    });
+
+    watch(usersFollowed, () => {
+      isFollowed.value = usersFollowed.value.find((item) => {
+        if (item.is_following === props.userId) {
+          return true;
+        }
+      });
+    });
+
+    if (usersFollowed) {
+      store.dispatch('user/getFollowersData');
+    }
 
     store.commit('externalUser/deleteExternalUserData');
     store.dispatch('externalUser/getExternalUserProfile', props.userId);
@@ -128,6 +148,7 @@ export default {
       externalUser,
       externalUserPosts,
       startFollowing,
+      isFollowed,
       loading,
     };
   },

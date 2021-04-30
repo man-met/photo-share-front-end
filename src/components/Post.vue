@@ -104,10 +104,8 @@ import { computed } from '@vue/runtime-core';
 
 export default {
   props: ['posts'],
-  setup(props) {
+  setup() {
     const store = useStore();
-
-    console.log(props.posts);
 
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
