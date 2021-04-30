@@ -2,7 +2,7 @@
   <header>
     <div class="header-container">
       <h1 id="logo">Quick Chat</h1>
-      <div class="main-footer">
+      <div class="main-footer" v-if="getUser">
         <router-link :to="{ name: 'Home' }"
           ><ion-icon
             :name="
@@ -54,13 +54,21 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default {
   setup() {
     const router = useRouter();
+    const store = useStore();
+
+    const getUser = computed(() => {
+      return store.getters['auth/getUser'];
+    });
     return {
       router,
+      getUser,
     };
   },
 };
