@@ -3,7 +3,7 @@
     <div class="post-card" v-for="post in posts" :key="post._id">
       <div class="post-header">
         <img class="profile-pic" :src="post.user.photo" alt="" tabindex="0" />
-        <p class="username">
+        <p class="username b">
           {{ post.user.first_name }} {{ post.user.last_name }}
         </p>
       </div>
