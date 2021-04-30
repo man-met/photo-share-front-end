@@ -8,15 +8,11 @@
         tabindex="0"
       />
       <div class="profile-stats">
-        <p>#</p>
-        <p>Posts</p>
-      </div>
-      <div class="profile-stats">
-        <p>#</p>
+        <p>2</p>
         <p>Followers</p>
       </div>
       <div class="profile-stats">
-        <p>#</p>
+        <p>5</p>
         <p>Following</p>
       </div>
     </div>
@@ -45,9 +41,7 @@
       </div>
     </div>
   </div>
-  <div v-else>
-    <h1>Loading...</h1>
-  </div>
+  <Spinner v-if="loading" />
 </template>
 
 <script>
@@ -60,12 +54,24 @@ import {
   ref,
   watch,
 } from '@vue/runtime-core';
+import Spinner from '../components/Spinner';
 
 export default {
   props: { userId: { type: String, required: true } },
+  components: { Spinner },
   setup(props) {
     const store = useStore();
     const isLoading = ref(false);
+
+    const loading = ref(false);
+
+    const processingRequest = computed(() => {
+      return store.getters['getProcessingRequestValue'];
+    });
+
+    watch(processingRequest, () => {
+      loading.value = !loading.value;
+    });
 
     store.commit('externalUser/deleteExternalUserData');
     store.dispatch('externalUser/getExternalUserProfile', props.userId);
@@ -122,6 +128,7 @@ export default {
       externalUser,
       externalUserPosts,
       startFollowing,
+      loading,
     };
   },
 };

@@ -54,6 +54,7 @@ export const actions = {
   async getExternalUserPosts({ commit }, payload) {
     currentPage.value++;
     try {
+      commit('setProcessingRequest', null, { root: true });
       const userId = payload;
 
       const response = await axios({
@@ -66,7 +67,9 @@ export const actions = {
       } else {
         commit('setAreAllPostsRetrieved');
       }
+      await commit('setProcessingRequest', null, { root: true });
     } catch (err) {
+      await commit('setProcessingRequest', null, { root: true });
       return commit('setError', err.message);
     }
   },

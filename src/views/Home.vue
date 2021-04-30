@@ -2,9 +2,8 @@
   <div class="container">
     <!-- <h1>{{ getUser.user.email }}</h1> -->
     <Post :posts="posts" v-if="posts.length" />
-    <div v-else>Loading...</div>
+    <Spinner v-if="loading" />
     <h1 v-if="allPostsRetrieved">No more posts!</h1>
-    <p v-if="isLoading">Loading...</p>
   </div>
 </template>
 
@@ -15,12 +14,23 @@ import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
 import { computed, onMounted, onUnmounted, watch } from '@vue/runtime-core';
 import { orderBy } from 'natural-orderby';
+import Spinner from '../components/Spinner';
 
 export default {
-  components: { Post },
+  components: { Post, Spinner },
   setup() {
     const store = useStore();
     const isLoading = ref(false);
+
+    const loading = ref(false);
+
+    const processingRequest = computed(() => {
+      return store.getters['getProcessingRequestValue'];
+    });
+
+    watch(processingRequest, () => {
+      loading.value = !loading.value;
+    });
 
     const getUser = computed(() => {
       return store.getters['auth/getUser'];
@@ -74,6 +84,7 @@ export default {
       posts,
       getUser,
       allPostsRetrieved,
+      loading,
       isLoading,
     };
   },

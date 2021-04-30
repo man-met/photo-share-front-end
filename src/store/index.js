@@ -14,13 +14,27 @@ export default createStore({
     }),
   ],
 
-  state: {},
+  state: {
+    processingRequest: false,
+  },
 
-  mutations: {},
+  mutations: {
+    setProcessingRequest(state) {
+      if (state.processingRequest) {
+        state.processingRequest = false;
+      } else {
+        state.processingRequest = true;
+      }
+    },
+  },
 
   actions: {},
 
-  getters: {},
+  getters: {
+    getProcessingRequestValue(state) {
+      return state.processingRequest;
+    },
+  },
   // use these modules
   modules: {
     auth,

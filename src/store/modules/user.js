@@ -56,6 +56,7 @@ export const actions = {
   async getLoggedInUsersPosts({ commit }, payload) {
     currentPage.value++;
     try {
+      commit('setProcessingRequest', null, { root: true });
       const { user } = payload;
 
       const response = await axios({
@@ -68,7 +69,9 @@ export const actions = {
       } else {
         commit('setAllPostsRetrieved');
       }
+      await commit('setProcessingRequest', null, { root: true });
     } catch (err) {
+      await commit('setProcessingRequest', null, { root: true });
       return commit('setError', err.message);
     }
   },

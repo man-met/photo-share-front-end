@@ -13,6 +13,7 @@
         class="password"
         type="password"
         placeholder="Password"
+        minlength="8"
         v-model="password"
         required
       />
@@ -25,18 +26,33 @@
       </div>
     </div>
   </form>
+  <div class="spinner-wrapper" v-if="loading">
+    <Spinner />
+  </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
-import { computed, onBeforeMount } from '@vue/runtime-core';
+import { computed, onBeforeMount, watch } from '@vue/runtime-core';
+import Spinner from '../components/Spinner';
 
 export default {
+  components: { Spinner },
   setup() {
     const email = ref('');
     const password = ref('');
     const store = useStore();
+
+    const loading = ref(false);
+
+    const processingRequest = computed(() => {
+      return store.getters['getProcessingRequestValue'];
+    });
+
+    watch(processingRequest, () => {
+      loading.value = !loading.value;
+    });
 
     const error = computed(() => {
       return store.getters['auth/getError'];
@@ -58,6 +74,7 @@ export default {
       email,
       password,
       loginAction,
+      loading,
       error,
     };
   },

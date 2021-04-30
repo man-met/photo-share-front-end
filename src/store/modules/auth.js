@@ -27,6 +27,7 @@ export const mutations = {
 export const actions = {
   async signupAction({ commit }, payload) {
     try {
+      commit('setProcessingRequest', null, { root: true });
       const response = await axios({
         method: 'POST',
         url: `${url}api/v1/users/signup`,
@@ -36,18 +37,21 @@ export const actions = {
 
       commit('setToken', response.data.token);
       commit('setUser', response.data.data);
+      await commit('setProcessingRequest', null, { root: true });
       router.push({ name: 'Home' });
     } catch (err) {
       let { message } = err;
       if (message.includes('409')) {
         message = 'An account already exists with that email.';
       }
+      await commit('setProcessingRequest', null, { root: true });
       return commit('setError', message);
     }
   },
 
   async loginAction({ commit }, payload) {
     try {
+      commit('setProcessingRequest', null, { root: true });
       const response = await axios({
         method: 'POST',
         url: `${url}api/v1/users/login`,
@@ -56,14 +60,17 @@ export const actions = {
       });
       commit('setToken', response.data.token);
       commit('setUser', response.data.data);
+      await commit('setProcessingRequest', null, { root: true });
       router.push({ name: 'Home' });
     } catch (err) {
+      await commit('setProcessingRequest', null, { root: true });
       return commit('setError', 'Username or Password is incorrect!');
     }
   },
 
   async logoutAction({ commit }) {
     try {
+      commit('setProcessingRequest', null, { root: true });
       await axios({
         method: 'GET',
         url: `${url}api/v1/users/logout`,
@@ -71,8 +78,10 @@ export const actions = {
       });
       commit('setUser', null);
       commit('setToken', null);
+      await commit('setProcessingRequest', null, { root: true });
       router.push({ name: 'Login' });
     } catch (err) {
+      await commit('setProcessingRequest', null, { root: true });
       return commit('setError', err.message);
     }
   },
