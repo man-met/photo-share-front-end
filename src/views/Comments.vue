@@ -43,7 +43,7 @@
       </div>
     </div>
     <p v-else class="error">Oops... Something went wrong! Try again later.</p>
-    <div class="comments-box-container">
+    <div class="comments-box-container" id="absolute-zero">
       <input
         type="text"
         class="input-bar"
@@ -114,7 +114,7 @@ export default {
   position: fixed;
   top: 60px;
   background: black;
-  width: 100%;
+  width: 600px;
   border-bottom: 1px solid rgb(36, 36, 36);
   padding: 10px 0;
   z-index: 4;
@@ -166,7 +166,7 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   background: black;
-  position: fixed;
+  position: absolute;
   bottom: 48px;
   left: 0;
   top: auto;

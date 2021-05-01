@@ -139,6 +139,25 @@ export const actions = {
       return commit('setError', err.message);
     }
   },
+
+  async stopFollowingAction({ commit, dispatch }, payload) {
+    try {
+      const response = await axios({
+        method: 'DELETE',
+        url: `${url}api/v1/followers/`,
+        data: {
+          documentId: payload,
+        },
+        withCredentials: true,
+      });
+
+      if (response && response.status === 204) {
+        dispatch('getFollowersData');
+      }
+    } catch (err) {
+      return commit('setError', err.message);
+    }
+  },
 };
 
 export const getters = {
