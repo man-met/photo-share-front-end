@@ -11,6 +11,10 @@ body {
   /* min-height: 100vh; */
 }
 
+.fw {
+  color: black;
+}
+
 a {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;

@@ -56,3 +56,42 @@ exports.timeSince = (createdAt) => {
 
   return Math.floor(seconds) + ' seconds ago';
 };
+
+exports.urlBase64ToUint8Array = (base64String) => {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+};
+
+exports.displayGrantedNotification = () => {
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Lets ok');
+    navigator.serviceWorker.ready.then((swreg) => {
+      swreg.showNotification('You are subscribed to notifications', {
+        body: 'Thanks for subscribing!',
+        image: require('@/assets/logo.png'),
+        icon: require('@/assets/logo.png'),
+        badge: require('@/assets/logo.png'),
+        dir: 'ltr',
+        lang: 'en-US',
+        vibrate: [100, 50, 200],
+        tag: 'confirm-notification',
+        renotify: true,
+        actions: [
+          {
+            action: 'hello',
+            title: 'Hello',
+            icons: require('@/assets/logo.png'),
+          },
+        ],
+      });
+    });
+  }
+};

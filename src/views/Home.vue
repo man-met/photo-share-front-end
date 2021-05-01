@@ -14,7 +14,9 @@ import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
 import { computed, onMounted, onUnmounted, watch } from '@vue/runtime-core';
 import { orderBy } from 'natural-orderby';
+import { urlBase64ToUint8Array } from '../composables/utils';
 import Spinner from '../components/Spinner';
+// import qs from 'qs';
 
 export default {
   components: { Post, Spinner },
@@ -69,6 +71,64 @@ export default {
         store.dispatch('post/retrieveAllPosts', getUser.value);
       }
     };
+
+    // PUSH NOTIFICATIONS -> Get permission
+
+    const isServiceWorkerSupported = computed(() => {
+      if ('serviceWorker' in navigator) return true;
+      return false;
+    });
+
+    const isPushNotificationsSupported = computed(() => {
+      if ('PushManager' in window) return true;
+      return false;
+    });
+
+    const enableNotifications = () => {
+      if (isPushNotificationsSupported.value) {
+        Notification.requestPermission((result) => {
+          if (result == 'granted') {
+            // displayGrantedNotification();
+            checkForExistingPushNotification();
+          }
+        });
+      }
+    };
+
+    const checkForExistingPushNotification = () => {
+      if (
+        isServiceWorkerSupported.value &&
+        isPushNotificationsSupported.value
+      ) {
+        let reg;
+        navigator.serviceWorker.ready
+          .then((swreg) => {
+            reg = swreg;
+            return swreg.pushManager.getSubscription();
+          })
+          .then((sub) => {
+            // check if subscription exists
+            if (!sub) {
+              createPushSubscription(reg);
+            }
+          });
+      }
+    };
+
+    const createPushSubscription = (reg) => {
+      const vapidPublicKey = process.env.VUE_APP_VAPID_PUBLIC_KEY;
+      const vapidPublicKeyConverted = urlBase64ToUint8Array(vapidPublicKey);
+      reg.pushManager
+        .subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: vapidPublicKeyConverted,
+        })
+        .then((newSub) => {
+          store.dispatch('storePushSubscriptionAction', newSub);
+        });
+    };
+
+    enableNotifications();
 
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);

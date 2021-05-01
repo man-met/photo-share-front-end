@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="post in posts" :key="post._id">
-      <div class="post-card" v-if="getUser.user._id != post.user._id">
+      <div class="post-card" v-if="getUser.user._id !== post.user._id">
         <div class="post-header">
           <router-link
             :to="{

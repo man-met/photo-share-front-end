@@ -2,7 +2,7 @@
   <input
     type="text"
     placeholder="Search for Accounts..."
-    class="input-bar"
+    class="input-bar fw"
     v-model="searchKeyword"
   />
 
