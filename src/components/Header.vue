@@ -25,8 +25,8 @@
           ><ion-icon
             :name="
               router.currentRoute.value.name === 'Gallery'
-                ? 'images'
-                : 'images-outline'
+                ? 'add-circle'
+                : 'add-circle-outline'
             "
           ></ion-icon
         ></router-link>
