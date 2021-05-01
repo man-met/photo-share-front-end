@@ -5,6 +5,7 @@
       <input
         id="first-name"
         type="text"
+        class="fw"
         placeholder="First Name"
         v-model="firstName"
         required
@@ -12,6 +13,7 @@
       <input
         id="last-name"
         type="text"
+        class="fw"
         placeholder="Last Name"
         v-model="lastName"
         required
@@ -19,12 +21,13 @@
       <input
         id="email"
         type="email"
+        class="fw"
         placeholder="Email"
         v-model="email"
         required
       />
       <input
-        class="password"
+        class="password fw"
         type="password"
         placeholder="Password"
         minlength="8"
@@ -32,7 +35,7 @@
         required
       />
       <input
-        class="password"
+        class="password fw"
         type="password"
         placeholder="Confirm Password"
         minlength="8"
