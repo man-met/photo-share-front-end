@@ -46,7 +46,7 @@
     <div class="comments-box-container" id="absolute-zero">
       <input
         type="text"
-        class="input-bar"
+        class="input-bar fw"
         id="comments-box"
         placeholder="Write a Comment..."
         @keyup.enter="submitComment"
