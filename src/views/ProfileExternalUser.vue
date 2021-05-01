@@ -1,33 +1,35 @@
 <template>
   <div v-if="externalUser">
-    <div class="profile-header">
+    <div class="profile-header flex-center">
       <img
         class="profile-page-pic"
         :src="externalUser.user.photo"
         alt=""
         tabindex="0"
       />
-      <div class="profile-stats">
+      <!-- <div class="profile-stats">
         <p>2</p>
         <p>Followers</p>
       </div>
       <div class="profile-stats">
         <p>5</p>
         <p>Following</p>
-      </div>
-    </div>
-    <div class="profile-bio">
-      <p>
+      </div> -->
+      <h1>
         <b
           >{{ externalUser.user.first_name }}
           {{ externalUser.user.last_name }}</b
         >
-      </p>
+      </h1>
+    </div>
+    <div class="profile-bio">
       <p>{{ externalUser.user.bio }}</p>
     </div>
     <div class="profile-buttons-container">
       <div v-if="isFollowed" class="profile-buttons">
-        <button class="disabled">Following</button>
+        <button class="primary" @click="stopFollowing(isFollowed._id)">
+          Following
+        </button>
       </div>
       <div v-else class="profile-buttons">
         <button class="primary" @click="startFollowing">Follow</button>
@@ -130,6 +132,11 @@ export default {
       store.dispatch('user/startFollowingAction', props.userId);
     };
 
+    const stopFollowing = (documentId) => {
+      console.log(documentId);
+      store.dispatch('user/stopFollowingAction', documentId);
+    };
+
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);
     });
@@ -148,6 +155,7 @@ export default {
       externalUser,
       externalUserPosts,
       startFollowing,
+      stopFollowing,
       isFollowed,
       loading,
     };
@@ -155,4 +163,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.flex-center {
+  align-items: center;
+  justify-content: space-evenly;
+}
+</style>

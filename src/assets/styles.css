@@ -1,6 +1,7 @@
 /* Development Styles */
 * {
-  color: #4d6f89;
+  color: white;
+  /* color: #4d6f89; */
   padding: 0;
   margin: 0;
 }
@@ -196,9 +197,9 @@ main {
     /* height: calc(600px / 3); */
   }
 
-  .comments-box-container {
-    display: fixed;
-    bottom: 0px;
-    top: auto;
+  #absolute-zero {
+    display: absolute;
+    bottom: 0;
+    background: black;
   }
 }
