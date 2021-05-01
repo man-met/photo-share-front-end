@@ -117,7 +117,6 @@ export default {
 
     const createPushSubscription = (reg) => {
       const vapidPublicKey = process.env.VUE_APP_VAPID_PUBLIC_KEY;
-      console.log('vapidpublickey:', vapidPublicKey);
       const vapidPublicKeyConverted = urlBase64ToUint8Array(vapidPublicKey);
       reg.pushManager
         .subscribe({
