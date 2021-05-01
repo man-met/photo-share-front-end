@@ -4,7 +4,7 @@ import router from '../../router';
 
 const url = process.env.VUE_APP_BACK_END_URL;
 const currentPage = ref(0);
-const limit = 5;
+const limit = 15;
 
 export const namespaced = true;
 

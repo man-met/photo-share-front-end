@@ -6,11 +6,12 @@
         id="email"
         type="email"
         placeholder="Email"
+        class="fw"
         v-model="email"
         required
       />
       <input
-        class="password"
+        class="password fw"
         type="password"
         placeholder="Password"
         minlength="8"

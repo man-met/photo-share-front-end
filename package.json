@@ -6,6 +6,7 @@
     "start": "node server.js",
     "serve": "vue-cli-service serve",
     "servesecure": "vue-cli-service serve --https",
+    "watch": "webpack --config ./node_modules/@vue/cli-service/webpack.config.js --watch",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
@@ -47,6 +48,7 @@
     "eslint-plugin-vue": "^7.0.0",
     "prettier": "^2.2.1",
     "typescript": "~3.9.3",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-0",
+    "webpack-cli": "^4.6.0"
   }
 }

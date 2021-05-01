@@ -1,32 +1,37 @@
 <template>
   <div v-if="externalUser">
-    <div class="profile-header">
+    <div class="profile-header flex-center">
       <img
         class="profile-page-pic"
         :src="externalUser.user.photo"
         alt=""
         tabindex="0"
       />
-      <div class="profile-stats">
+      <!-- <div class="profile-stats">
         <p>2</p>
         <p>Followers</p>
       </div>
       <div class="profile-stats">
         <p>5</p>
         <p>Following</p>
-      </div>
-    </div>
-    <div class="profile-bio">
-      <p>
+      </div> -->
+      <h1>
         <b
           >{{ externalUser.user.first_name }}
           {{ externalUser.user.last_name }}</b
         >
-      </p>
+      </h1>
+    </div>
+    <div class="profile-bio">
       <p>{{ externalUser.user.bio }}</p>
     </div>
     <div class="profile-buttons-container">
-      <div class="profile-buttons">
+      <div v-if="isFollowed" class="profile-buttons">
+        <button class="primary" @click="stopFollowing(isFollowed._id)">
+          Following
+        </button>
+      </div>
+      <div v-else class="profile-buttons">
         <button class="primary" @click="startFollowing">Follow</button>
       </div>
     </div>
@@ -62,7 +67,7 @@ export default {
   setup(props) {
     const store = useStore();
     const isLoading = ref(false);
-
+    const isFollowed = ref(null);
     const loading = ref(false);
 
     const processingRequest = computed(() => {
@@ -72,6 +77,23 @@ export default {
     watch(processingRequest, () => {
       loading.value = !loading.value;
     });
+
+    const usersFollowed = computed(() => {
+      // console.log(store.getters['user/getFollowers']);
+      return store.getters['user/getFollowings'];
+    });
+
+    watch(usersFollowed, () => {
+      isFollowed.value = usersFollowed.value.find((item) => {
+        if (item.is_following === props.userId) {
+          return true;
+        }
+      });
+    });
+
+    if (usersFollowed) {
+      store.dispatch('user/getFollowersData');
+    }
 
     store.commit('externalUser/deleteExternalUserData');
     store.dispatch('externalUser/getExternalUserProfile', props.userId);
@@ -110,6 +132,11 @@ export default {
       store.dispatch('user/startFollowingAction', props.userId);
     };
 
+    const stopFollowing = (documentId) => {
+      console.log(documentId);
+      store.dispatch('user/stopFollowingAction', documentId);
+    };
+
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);
     });
@@ -128,10 +155,17 @@ export default {
       externalUser,
       externalUserPosts,
       startFollowing,
+      stopFollowing,
+      isFollowed,
       loading,
     };
   },
 };
 </script>
 
-<style></style>
+<style>
+.flex-center {
+  align-items: center;
+  justify-content: space-evenly;
+}
+</style>

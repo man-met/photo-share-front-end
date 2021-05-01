@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="post in posts" :key="post._id">
-      <div class="post-card" v-if="getUser.user._id != post.user._id">
+      <div class="post-card" v-if="getUser.user._id !== post.user._id">
         <div class="post-header">
           <router-link
             :to="{
@@ -104,10 +104,8 @@ import { computed } from '@vue/runtime-core';
 
 export default {
   props: ['posts'],
-  setup(props) {
+  setup() {
     const store = useStore();
-
-    console.log(props.posts);
 
     const getUser = computed(() => {
       return store.getters['auth/getUser'];

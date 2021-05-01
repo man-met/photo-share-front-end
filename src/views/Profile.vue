@@ -23,8 +23,9 @@
   </div>
   <div class="profile-buttons-container">
     <div class="profile-buttons">
-      <router-link :to="{ name: 'ProfileEdit' }">Edit Profile</router-link>
-      <router-link :to="{ name: 'Home' }">Saved</router-link>
+      <router-link :to="{ name: 'ProfileEdit' }"
+        ><button class="primary full-w-h">Edit Profile</button></router-link
+      >
     </div>
   </div>
   <div class="post-images-container" v-if="posts">
@@ -174,13 +175,12 @@ export default {
 .profile-buttons {
   margin: 10px 15px 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .profile-buttons > a {
   background-color: white;
   margin: 0 5px;
-  padding: 5px;
 }
 
 .post-images-container {
@@ -198,5 +198,11 @@ export default {
   width: 100%;
   height: calc(100vw / 3.5);
   object-fit: cover;
+}
+
+.full-w-h {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 </style>
