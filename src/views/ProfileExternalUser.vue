@@ -7,14 +7,6 @@
         alt=""
         tabindex="0"
       />
-      <!-- <div class="profile-stats">
-        <p>2</p>
-        <p>Followers</p>
-      </div>
-      <div class="profile-stats">
-        <p>5</p>
-        <p>Following</p>
-      </div> -->
       <h1>
         <b
           >{{ externalUser.user.first_name }}
@@ -79,7 +71,6 @@ export default {
     });
 
     const usersFollowed = computed(() => {
-      // console.log(store.getters['user/getFollowers']);
       return store.getters['user/getFollowings'];
     });
 
@@ -133,7 +124,6 @@ export default {
     };
 
     const stopFollowing = (documentId) => {
-      console.log(documentId);
       store.dispatch('user/stopFollowingAction', documentId);
     };
 

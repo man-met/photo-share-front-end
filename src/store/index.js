@@ -7,7 +7,7 @@ import * as comment from './modules/comment';
 import * as utilsStore from './modules/utilsStore';
 import createPersistedState from 'vuex-persistedstate';
 import axios from 'axios';
-// import { displayGrantedNotification } from '../composables/utils';
+import { displayGrantedNotification } from '../composables/utils';
 
 const url = process.env.VUE_APP_BACK_END_URL;
 
@@ -35,7 +35,6 @@ export default createStore({
   actions: {
     async storePushSubscriptionAction({ commit }, payload) {
       try {
-        console.log(payload);
         const response = await axios({
           method: 'POST',
           url: `${url}api/v1/push-notification`,
@@ -44,9 +43,10 @@ export default createStore({
           },
           withCredentials: true,
         });
-        console.log(response);
 
-        // display subscribed notification once subscribed
+        if (response.data) {
+          displayGrantedNotification();
+        }
       } catch (err) {
         return commit(
           'setError',
