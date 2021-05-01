@@ -70,7 +70,6 @@ self.addEventListener('notificationclose', (event) => {
 // Listen for push event
 
 self.addEventListener('push', (event) => {
-  console.log('Push message received: ', event);
   if (event.data) {
     const data = JSON.parse(event.data.text());
 
@@ -86,6 +85,5 @@ self.addEventListener('push', (event) => {
         },
       })
     );
-    console.log(data);
   }
 });

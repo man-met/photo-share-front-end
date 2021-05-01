@@ -58,7 +58,6 @@ exports.timeSince = (createdAt) => {
 };
 
 exports.urlBase64ToUint8Array = (base64String) => {
-  console.log('base64String: ', base64String);
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
 
@@ -73,7 +72,6 @@ exports.urlBase64ToUint8Array = (base64String) => {
 
 exports.displayGrantedNotification = () => {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Lets ok');
     navigator.serviceWorker.ready.then((swreg) => {
       swreg.showNotification('You are subscribed to notifications', {
         body: 'Thanks for subscribing!',
