@@ -14,6 +14,7 @@
     <input
       id="edit-first-name"
       type="text"
+      class="fw"
       placeholder="First Name"
       v-model="firstName"
       required
@@ -21,6 +22,7 @@
     <input
       id="edit-last-name"
       type="text"
+      class="fw"
       placeholder="Last Name"
       v-model="lastName"
       required
